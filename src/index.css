@@ -54,6 +54,52 @@ body {
   margin: .5em;
 }
 
+/**
+ * SignIn Page
+ */
+.signin-container {
+	width: 90%;
+	margin: 1em auto 1em auto;
+}
+.signin-header {
+	text-align: center;
+}
+.title {
+	margin: 0;
+}
+.subtitle {
+	margin: 0;
+	padding: .5em;
+}
+.signin-image-container {
+
+}
+.signin-image {
+
+}
+.signin-select-container {
+	text-align: center;
+}
+.signin-label {
+  display: block;
+  padding: 1em;
+  font-size: 20px;
+}
+.signin-select {
+  width: 90%;
+  background: #d8cece;
+}
+.signin-button {
+  width: 90%;
+  margin: 1em;
+}
+
+
+
+
+
+
+
 /* ********* For testing ********* */
 .container-qlist {
 	border: 1px solid green;
@@ -63,6 +109,15 @@ body {
 	border: 1px solid red;
 }
 
+.container-signIn {
+	border: 1px solid orange;
+}
+
+.container-element-con {
+	border: 1px solid green;
+}
+
 .container-element {
 	border: 1px solid blue;
 }
+

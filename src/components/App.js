@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import Nav from './Nav'
 import Dashboard from './Dashboard'
+import SignIn from './SignIn'
 
 class App extends Component {
 
@@ -15,7 +16,9 @@ class App extends Component {
       <div className="App">
       		<Nav />
       		<div>
-      			<Dashboard />
+            {this.props.loading === true
+              ? <SignIn />
+        			: <Dashboard />}
       		</div>
           { /* <div>
 	          <Route path='/' exact component={Dashboard} />
@@ -28,4 +31,10 @@ class App extends Component {
   }
 }
 
-export default connect()(App)
+function mapStateToProps ({ authedUser }) {
+  return {
+    loading: authedUser === ''
+  }
+}
+
+export default connect(mapStateToProps)(App)
