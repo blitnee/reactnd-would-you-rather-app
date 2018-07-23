@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  font-size: 15px;
 }
 
 /**
@@ -16,7 +17,6 @@ body {
 .nav-item {
 	float: left;
 	display: block;
-	padding: 8px;
 }
 
 /**
@@ -25,8 +25,25 @@ body {
 .questions-list {
   width: 90%;
   margin: 1em auto 1em auto;
+  padding: auto;
 }
-
+.tab-list {
+  margin: 0;
+  padding: 0;
+  -ms-flex-pack: center;
+  justify-content: center;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  list-style-type: none;
+  width: -webkit-fill-available;
+}
+.tab {
+  width: 50%;
+  text-align: center;
+  padding: .25em;
+  font-size: 15px;
+  background: yellow;
+}
 /**
  * Question Card
  */
@@ -41,9 +58,18 @@ body {
   width: 100%;
 }
 .question-card-block {
-	margin: 0;
+	margin: auto;
 	display: inline-block;
-	width: 50%;
+	width: 95%;
+}
+.question-title {
+	margin: 1em 0;
+}
+.question-select {
+	display: grid;
+}
+.option {
+	padding: .5em;
 }
 .button-container {
 	text-align: center;
