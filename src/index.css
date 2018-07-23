@@ -9,14 +9,19 @@ body {
  * Nav
  */
 .nav-items {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	display: inline-block;
+  list-style-type: none;
+  margin: .25em;
+  padding: 0;
 }
 .nav-item {
-	float: left;
-	display: block;
+  display: inline-block;
+  padding-right: 1em;
+}
+.nav-items-right {
+	float: right;
+}
+.nav-items-left {
+  padding-left: 1em;
 }
 
 /**
@@ -44,6 +49,7 @@ body {
   font-size: 15px;
   background: yellow;
 }
+
 /**
  * Question Card
  */
