@@ -3,15 +3,19 @@ import { receiveQuestions } from '../actions/questions'
 import { receiveUsers } from '../actions/users'
 import { setAuthedUser } from '../actions/authedUser'
 
-const AUTHED_ID = 'tylermcginnis'
-
 export function handleInitialData () {
 	return (dispatch) => {
 		return getInitialData()
 			.then(({ users, questions }) => {
 				dispatch(receiveUsers(users))
-				dispatch(setAuthedUser(AUTHED_ID))
+				dispatch(setAuthedUser(''))
 				dispatch(receiveQuestions(questions))
 			})
+	}
+}
+
+export function handleSetAuthedUser (id) {
+	return (dispatch) => {
+		dispatch(setAuthedUser(id))
 	}
 }
