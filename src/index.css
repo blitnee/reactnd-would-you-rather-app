@@ -20,8 +20,8 @@ body {
 .nav-items-right {
 	float: right;
 }
-.nav-items-left {
-  padding-left: 1em;
+.nav-no-pad {
+	padding: 0 !important;
 }
 
 /**
