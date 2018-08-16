@@ -17,24 +17,37 @@ class QuestionsList extends Component {
 		{/* @todo: Add button prop for vote or pole functionality */}
 		return (
 			<div className='questions-list container-qlist'>
-			<Tabs>
-		    <TabList className='tab-list container-element'>
-		      <Tab className='tab container-qlist'>Unanswered Questions</Tab>
-		      <Tab className='tab container-qlist'>Answered Questions</Tab>
-		    </TabList>
-
-				{/* @todo: Lists based on user unanswered */}
-		    <TabPanel>
-	      	{this.props.questions.map((q) => {
-			  		return <QuestionPrev key={q.id} author={q.author} optionOne={q.optionOne.text} optionTwo={q.optionTwo.text} />
-			  	})}
-		    </TabPanel>
-		    <TabPanel>
-	      	{this.props.questions.map((q) => {
-			  		return 'this works...'
-			  	})}
-		    </TabPanel>
-			</Tabs>
+				<Tabs>
+			    <TabList className='tab-list container-element'>
+			      <Tab className='tab container-qlist'>Unanswered Questions</Tab>
+			      <Tab className='tab container-qlist'>Answered Questions</Tab>
+			    </TabList>
+					{/* @todo: Lists based on user unanswered */}
+			    <TabPanel>
+		      	{ this.props.unanswered.map((q) => {
+				  		return <QuestionPrev
+				  							key={q.id}
+				  							author={q.author}
+				  							avatarURL={this.getAvatar(q.author)}
+				  							optionOne={q.optionOne.text}
+				  							optionTwo={q.optionTwo.text}
+				  							onHandleSubmit={this.props.onHandleSubmit}
+				  							onChange={this.props.onUserVote}
+				  							buttonValue={'Submit'} />
+						})}
+			    </TabPanel>
+			    <TabPanel>
+		      	{this.props.answered.map((q) => {
+				  		return <QuestionPrev
+				  							key={q.id}
+				  							author={q.author}
+				  							avatar={this.getAvatar(q.author)}
+				  							optionOne={q.optionOne.text}
+				  							optionTwo={q.optionTwo.text}
+				  							buttonValue={'Pole Results'} />
+				  	})}
+			    </TabPanel>
+				</Tabs>
 			</div>
 		)
 	}
