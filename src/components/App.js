@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import Nav from './Nav'
@@ -13,30 +14,25 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-      		{this.props.loading === true
-            ? null
-            : <Nav />
-          }
-      		<div>
-            {this.props.loading === true
-              ? <SignIn />
-        			: <Dashboard />}
-      		</div>
-          { /* <div>
-	          <Route path='/' exact component={Dashboard} />
-	          <Route path='/question/:id' component={QuestionPage} />
-	          <Route path='/signin' component={SignIn} />
-	          <Route path='/leaders' component={LeaderBoard} />
-	        </div> */}
-      </div>
-    );
+      <Router>
+        <div className="App">
+          {this.props.authed === false
+            ? <SignIn />
+            : <div className='container'>
+                <Nav />
+                <Route path='/' exact component={ Dashboard } />
+              </div>
+            }
+        </div>
+      </Router>
+    )
   }
+
 }
 
 function mapStateToProps ({ authedUser }) {
   return {
-    loading: authedUser === ''
+    authed: authedUser.authenticated
   }
 }
 

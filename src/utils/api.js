@@ -1,4 +1,6 @@
 import {
+  _login,
+  _logout,
   _getUsers,
   _getQuestions,
   _saveQuestion,
@@ -21,4 +23,23 @@ export function saveQuestion (info) {
 
 export function saveQuestionAnswer (info) {
   return _saveQuestionAnswer(info)
+}
+
+export function loginUser (username) {
+  return _login(username)
+    .then(
+      user => {
+        localStorage.setItem('user', JSON.stringify(user))
+        return Promise.resolve(user)
+      }
+    )
+}
+
+export function logoutUser () {
+  return _logout()
+    .then(
+      user => {
+        localStorage.removeItem('user')
+      }
+    )
 }

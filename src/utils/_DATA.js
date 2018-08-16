@@ -119,6 +119,21 @@ function generateUID () {
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 }
 
+export function _login(username) {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      const user = users[username]
+      return user ? res(user) : rej("Login failed. Please try again.")
+    }, 1000)
+  })
+}
+
+export function _logout() {
+  return new Promise((res, rej) => {
+    setTimeout(() => res("User logged out."), 1000)
+  })
+}
+
 export function _getUsers () {
   return new Promise((res, rej) => {
     setTimeout(() => res({...users}), 1000)

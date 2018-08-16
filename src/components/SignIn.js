@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { handleSetAuthedUser } from '../actions/shared'
+import { login } from '../actions/authedUser'
 
 class SignIn extends Component {
 	state = {
@@ -11,12 +11,9 @@ class SignIn extends Component {
 	}
 	handleSubmit = (e) => {
 		e.preventDefault()
-		console.log('This data will be sent: ', this.state.userId)
-
-		this.props.dispatch(handleSetAuthedUser(this.state.userId))
+		this.props.dispatch(login(this.state.userId))
 	}
 	render() {
-		console.log('You will be logged-in as ', this.state, ' on submit.')
 		return (
 			<div className='signin-container container-signIn'>
 				<header className='signin-header container-element-con'>
@@ -44,12 +41,10 @@ class SignIn extends Component {
 }
 
 function mapStateToProps ({ users, authedUser }) {
-
   return {
     users: Object.values(users),
     authedUser: authedUser
   }
 }
-
 
 export default connect(mapStateToProps)(SignIn)
