@@ -2,11 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 // import { NavLink } from 'react-router-dom'
 import { logout } from '../actions/authedUser'
+import Dropdown, { DropdownTrigger, DropdownContent } from 'react-simple-dropdown'
 
 class Nav extends Component {
-	state = {
 
-	}
 	handleLogout = (e) => {
 		return (e) => this.props.dispatch(logout())
 	}
@@ -20,13 +19,22 @@ class Nav extends Component {
 						<li className='nav-item'>Leaders</li>
 					</span>
 					<span className='nav-items-right'>
-						<li className='nav-item'>
-							{/* @todo: Add avatar */}
-							Hello, {this.props.authedUser.loggedUserId}</li>
-						<li className='nav-item nav-no-pad'
-								onClick={this.handleLogout()}>
-							{/* @todo: Click to show Logout */}
-							Logout</li>
+						<Dropdown removeElement>
+              <DropdownTrigger>
+              	<li className='nav-item'>
+									{/* @todo: Add avatar */}
+									Hello, {this.props.authedUser.loggedUserId}
+								</li>
+							</DropdownTrigger>
+              <DropdownContent>
+              	<ul>
+									<li className='nav-item nav-no-pad'
+											onClick={this.handleLogout()}>
+											Logout
+									</li>
+								</ul>
+              </DropdownContent>
+            </Dropdown>
 					</span>
 				</ul>
 			</nav>
