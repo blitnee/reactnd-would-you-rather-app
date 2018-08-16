@@ -14,6 +14,7 @@ class SignIn extends Component {
 		this.props.dispatch(login(this.state.userId))
 	}
 	render() {
+		const { userId } = this.state
 		return (
 			<div className='signin-container container-signIn'>
 				<header className='signin-header container-element-con'>
@@ -33,7 +34,7 @@ class SignIn extends Component {
 					</select>
 					</div>
 					<div className='button-container'>
-						<button className='signin-button container-element' onClick={this.handleSubmit}>Sign In</button>
+						<button className='signin-button container-element' disabled={ this.state.userId === '' } onClick={this.handleSubmit}>Sign In</button>
 					</div>
 			</div>
 		)
