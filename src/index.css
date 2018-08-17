@@ -20,10 +20,33 @@ body {
 .nav-items-right {
 	float: right;
 }
-.nav-no-pad {
-	padding: 0 !important;
+a.nav-item {
+  text-decoration: none;
+  color: inherit;
 }
 
+/**
+ * Dropdown Menu
+ */
+.drop-list {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  list-style-type: none;
+}
+.dropdown--active {
+  background-color: #a9deb2;
+  position: absolute;
+  right: 5px;
+}
+.dropdown__content {
+  border: 1px solid green;
+}
+.drop-item {
+  width: -webkit-fill-available;
+  height: 100%;
+  padding: 5px;
+}
 /**
  * Questions List
  */
@@ -47,7 +70,6 @@ body {
   text-align: center;
   padding: .25em;
   font-size: 15px;
-  background: yellow;
 }
 
 /**
