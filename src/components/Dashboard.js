@@ -17,7 +17,6 @@ class Dashboard extends Component {
 
 		let answered = []
 		let unanswered = []
-		console.log(this.props.questions)
 		questions.map((q) => {
 			q.optionOne.votes.concat(q.optionTwo.votes).includes(this.props.authedUser.loggedUserId)
 				? answered.push(q)
