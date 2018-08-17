@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-// import { NavLink } from 'react-router-dom'
 import { logout } from '../actions/authedUser'
 import Dropdown, { DropdownTrigger, DropdownContent } from 'react-simple-dropdown'
 
@@ -12,11 +12,11 @@ class Nav extends Component {
 	render () {
 		return (
 			<nav className='nav container-nav'>
-				<ul className='nav-items'>
+				<div className='nav-items'>
 					<span className='nav-items-left'>
-						<li className='nav-item'>Home</li>
-						<li className='nav-item'>New</li>
-						<li className='nav-item'>Leaders</li>
+						<Link to='/' className='nav-item'>Home</Link>
+						<Link to='/new' className='nav-item'>New</Link>
+						<Link to='/leaders' className='nav-item'>Leaders</Link>
 					</span>
 					<span className='nav-items-right'>
 						<Dropdown removeElement>
@@ -36,7 +36,7 @@ class Nav extends Component {
               </DropdownContent>
             </Dropdown>
 					</span>
-				</ul>
+				</div>
 			</nav>
 		)
 	}
