@@ -5,9 +5,24 @@ class NewQuestion extends Component {
 
 	render() {
 		return (
-			<div>
-				{/* @todo: Render New Question Card */}
-				<h3>NEW QUESTION</h3>
+			<div className='question-card container-element'>
+				<div className='question-card-block container-element'>
+					<h4 className='question-title'>Would You Rather...</h4>
+					<div className='question-select'>
+						<label htmlFor='option-one' className='question-input-label'>
+							Option One:
+							<input id='option-one' className='question-input' type='text' />
+						</label>
+						<label htmlFor='option-two' className='question-input-label'>
+							Option Two:
+							<input id='option-two' className='question-input' type='text' />
+						</label>
+					</div>
+				</div>
+				<div className="button-container">
+					{/* @todo: Onclick save question */}
+					<button className='submit-question-button container-element'>Submit</button>
+				</div>
 			</div>
 		)
 	}

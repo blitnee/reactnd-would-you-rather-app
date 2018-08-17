@@ -73,7 +73,7 @@ a.nav-item {
 }
 
 /**
- * Question Card
+ * Question/Question Prev
  */
 .question-card {
 	margin: .5em;
@@ -87,7 +87,7 @@ a.nav-item {
 }
 .question-card-block {
 	margin: auto;
-	display: inline-block;
+  margin-top: .5em;
 	width: 95%;
 }
 .question-title {
@@ -96,13 +96,25 @@ a.nav-item {
 .question-select {
 	display: grid;
 }
-.option {
-	padding: .5em;
+.question-option-label {
+  padding: .5em;
 }
 .button-container {
 	text-align: center;
 }
 .pole-button {
+  width: 10em;
+  padding: .5em;
+  margin: .5em;
+}
+.question-input-label {
+  display: inline-grid;
+  padding-bottom: 1em;
+}
+.question-input {
+  border: 1px solid;
+}
+.submit-question-button {
   width: 10em;
   padding: .5em;
   margin: .5em;

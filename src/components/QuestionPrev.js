@@ -14,19 +14,19 @@ class QuestionPrev extends Component {
 					<div className='question-card-block container-element'>
 						<h4 className='question-title'>Would You Rather...</h4>
 						<div className='question-select'>
-							<label htmlFor='one' className='option'>
+							<label htmlFor='option-one' className='question-option-label'>
 								{/* @todo: Uncheck value bug */}
 								<input
-									id='one'
+									id='option-one'
 									type='radio'
 									// value={this.props.optionOne}
 									onChange={this.handleClick(this.props.optionOne.text)}
 								/>
 								{this.props.optionOne}
 							</label>
-							<label htmlFor='two' className='option'>
+							<label htmlFor='option-two' className='question-option-label'>
 								<input
-									id='two'
+									id='option-two'
 									type='radio'
 									// value={this.props.optionTwo}
 									onChange={this.handleClick(this.props.optionTwo.text)}
