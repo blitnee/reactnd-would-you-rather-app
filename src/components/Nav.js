@@ -21,14 +21,14 @@ class Nav extends Component {
 					<span className='nav-items-right'>
 						<Dropdown removeElement>
               <DropdownTrigger>
-              	<li className='nav-item'>
+              	<span className='nav-item'>
 									{/* @todo: Add avatar */}
-									Hello, {this.props.authedUser.loggedUserId}
-								</li>
+									Hello, {this.props.authedUser.loggedUserId}	&#9662;
+								</span>
 							</DropdownTrigger>
               <DropdownContent>
-              	<ul>
-									<li className='nav-item nav-no-pad'
+              	<ul className='drop-list'>
+									<li className='drop-item'
 											onClick={this.handleLogout()}>
 											Logout
 									</li>
