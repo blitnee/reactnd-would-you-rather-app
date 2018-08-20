@@ -1,21 +1,44 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import LeaderCard from './LeaderCard'
 
 class LeaderBoard extends Component {
-
 	render() {
+		const { users } = this.props
+		const leaders = users.map((u)=> {
+			let aTotal = Object.values(u.answers).length
+			let qTotal = u.questions.length
+			let score = aTotal + qTotal
+			return {
+				name: u.name,
+				id: u.id,
+				aTotal: aTotal,
+				qTotal: qTotal,
+				score: score
+			}
+		})
+
 		return (
-			<div>
-				{/* @todo: Render Leader Card Component per leader */}
-				<h3>LEADER BOARD</h3>
+			<div className='leader-container container-element'>
+				{leaders.sort((a,b) => {
+					return b.score - a.score
+				}).map((u, index) => {
+					index++
+					return <LeaderCard
+						key={u.id}
+						index={index}
+						name={u.name}
+						answers={u.aTotal}
+						questions={u.qTotal}
+						score={u.score}/>
+				})}
 			</div>
 		)
 	}
 }
 
-function mapStateToProps ({ questions, users }) {
+function mapStateToProps ({ users }) {
 	return {
-		questions: Object.values(questions),
 		users: Object.values(users)
 	}
 }
