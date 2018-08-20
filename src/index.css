@@ -215,10 +215,48 @@ a.nav-item {
   margin: 1em;
 }
 
+/**
+ * Leader Board
+ */
+.leader-container {
+  width: 90%;
+  margin: 1em auto 1em auto;
+  padding: auto;
+  display: block;
+}
+.leader-card {
+  margin: .5em;
+  display: flex;
+  width: -webkit-fill-available;
+}
+.leader-rank {
+  width: 10%;
+  font-size: 2em;
+  text-align: center;
+}
+.leader-info {
+  width: 90%;
+}
+.leader-card-title {
 
-
-
-
+}
+.leader-header {
+  display: inline-flex;
+  width: 100%;
+  background-color: #03A9F4;
+}
+.leader-stats-container {
+  border: 1px solid green;
+}
+.leader-score {
+  font-weight: bolder;
+}
+.leader-answer-stats {
+  color: #544f4f;
+}
+.leader-question-stats {
+  color: #544f4f;
+}
 
 
 /* ********* For testing ********* */
