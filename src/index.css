@@ -15,7 +15,7 @@ body {
 }
 .nav-item {
   display: inline-block;
-  padding-right: 1em;
+  padding: .5em;
 }
 .nav-items-right {
 	float: right;
@@ -71,6 +71,9 @@ a.nav-item {
   padding: .25em;
   font-size: 15px;
 }
+.react-tabs__tab--selected {
+  background: yellow;
+}
 
 /**
  * Question/Prev/New
@@ -92,6 +95,7 @@ a.nav-item {
 }
 .question-title {
 	margin: 1em 0;
+  padding-left: .5em;
 }
 .question-select {
 	display: grid;
@@ -142,12 +146,18 @@ a.nav-item {
   height: 3em;
   display: table;
   vertical-align: middle;
+  border-radius: 10px;
+  border: 5px solid #026bc5;
+  margin: .5em;
 }
 .option-two {
   background-color: #01c49f;
   height: 3em;
   display: table;
   vertical-align: middle;
+  border-radius: 10px;
+  border: 5px solid #02987c;
+  margin: .5em;
 }
 .recharts-wrapper {
   margin: auto;
@@ -173,6 +183,12 @@ a.nav-item {
   margin: 0 auto .5em auto;
   margin-top: .5em;
   width: 95%;
+}
+.pole-results-title {
+  padding-left: .5em;
+}
+.vote-count {
+  padding-left: .5em;
 }
 
 /**
