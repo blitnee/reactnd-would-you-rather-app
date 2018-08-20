@@ -15,8 +15,8 @@ class Nav extends Component {
 				<div className='nav-items'>
 					<span className='nav-items-left'>
 						<Link to='/' className='nav-item'>Home</Link>
-						<Link to='/new' className='nav-item'>New</Link>
-						<Link to='/leaders' className='nav-item'>Leaders</Link>
+						<Link to='/add' className='nav-item'>New</Link>
+						<Link to='/leaderboard' className='nav-item'>Leaders</Link>
 					</span>
 					<span className='nav-items-right'>
 						<Dropdown removeElement>
