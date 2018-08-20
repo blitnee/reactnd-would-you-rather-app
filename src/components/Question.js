@@ -7,8 +7,7 @@ class Question extends Component {
 
 	state = {
 		question: {},
-		vote: '',
-		voters: 0
+		vote: {},
 	}
 
 	componentWillMount() {
@@ -21,13 +20,15 @@ class Question extends Component {
 		} else if (question[0].optionTwo.votes.includes(this.props.authedUser)) {
 			this.setState({ vote: 'optionTwo' })
 		}
-		const voters = (question[0].optionOne.votes.length)+(question[0].optionOne.votes.length)
-		this.setState({ voters })
 	}
 
+	getVotes() {
+		let votes = ((this.state.question.optionOne.votes.length) + (this.state.question.optionTwo.votes.length))
+		return votes
+	}
 
 	render () {
-		const { question, vote, voters } = this.state
+		const { question, vote, votes } = this.state
 		const data = [
 			{name: question.optionOne.text, value: question.optionOne.votes.length},
 			{name: question.optionTwo.text, value: question.optionTwo.votes.length}]
@@ -93,7 +94,9 @@ class Question extends Component {
 						</div>
 					</div>
 					<div className='results-block container-element'>
-						<h3 className='pole-results-title'>Results:</h3>
+						<h3 className='pole-results-title'>Results</h3>
+						<hr/>
+						<p className='vote-count'>Based on {this.getVotes()} voters</p>
 			    	<PieChart width={250} height={200} onMouseEnter={this.onPieEnter}>
 			        <Pie
 			          data={data}
@@ -108,7 +111,6 @@ class Question extends Component {
 			        </Pie>
 			        <Tooltip cursor={false} />
 			      </PieChart>
-			      <h4>Based on {voters} total voters.</h4>
 			     </div>
 				</div>
 			</div>
