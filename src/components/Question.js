@@ -64,37 +64,19 @@ class Question extends Component {
 						<div className='question-card-block container-element'>
 							<h4 className='question-title'>Would You Rather...</h4>
 							<div className='question-select'>
-								<span className='option-one'>
-									<label htmlFor='option-one' className='question-option-stat-label'>
+								<div className='option-one'>
+									<span className='question-option-stat-label'>
 										{/* @todo: Add border color for user's vote */}
-										<input
-											id='option-one'
-											type='radio'
-											checked={this.getValue(question.optionOne.votes)}
-											readOnly
-										/>
-										{question.optionOne.text}
-									</label>
-									{vote === 'optionOne'
-										? <div className='vote-icon'><p className='vote-text'>&#9733;</p></div>
-										: null
-									}
-								</span>
-								<span className='option-two'>
-									<label htmlFor='option-two' className='question-option-stat-label'>
-										<input
-											id='option-two'
-											type='radio'
-											checked={this.getValue(question.optionTwo.votes)}
-											readOnly
-										/>
-										{question.optionTwo.text}
-									</label>
-									{vote === 'optionTwo'
-										? <div className='vote-icon'><p className='vote-text'>&#9733;</p></div>
-										: null
-									}
-								</span>
+										<p>{question.optionOne.text}</p>
+									</span>
+									{vote === 'optionOne' && <span className='vote-icon'><p className='vote-text'>&#9733;</p></span>}
+								</div>
+								<div className='option-two'>
+									<span className='question-option-stat-label'>
+										<p>{question.optionTwo.text}</p>
+									</span>
+									{vote === 'optionTwo' && <span className='vote-icon'><p className='vote-text'>&#9733;</p></span>}
+								</div>
 							</div>
 						</div>
 					</div>

@@ -42,32 +42,30 @@ class QuestionPrev extends Component {
 				<div className="block-container">
 					<div className='question-card-block container-element'>
 						<h4 className='question-title'>Would You Rather...</h4>
-						<div className='question-select'>
-							<form action=''>
-								<label htmlFor='option-one' className='question-option-label'>
-									<input
-										id='option-one'
-										type='radio'
-										name='option'
-										value='optionOne'
-										checked={this.getValue('optionOne')}
-										onChange={(e) => this.handleClick(e)}
-									/>
-									{optionOne.text}
-								</label>
-								<label htmlFor='option-two' className='question-option-label'>
-									<input
-										id='option-two'
-										type='radio'
-										name='option'
-										value='optionTwo'
-										checked={this.getValue('optionTwo')}
-										onChange={(e) => this.handleClick(e)}
-									/>
-									{optionTwo.text}
-								</label>
-							</form>
-						</div>
+						<form className='question-select' action=''>
+							<label htmlFor='option-one' className='question-option-label'>
+								<input
+									id='option-one'
+									type='radio'
+									name='option'
+									value='optionOne'
+									checked={this.getValue('optionOne')}
+									onChange={(e) => this.handleClick(e)}
+								/>
+								{optionOne.text}
+							</label>
+							<label htmlFor='option-two' className='question-option-label'>
+								<input
+									id='option-two'
+									type='radio'
+									name='option'
+									value='optionTwo'
+									checked={this.getValue('optionTwo')}
+									onChange={(e) => this.handleClick(e)}
+								/>
+								{optionTwo.text}
+							</label>
+						</form>
 					</div>
 				</div>
 				<div className="button-container">
