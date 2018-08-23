@@ -12,7 +12,7 @@ class QuestionsList extends Component {
 	}
 
 	render() {
-		const { unanswered, answered, users } = this.props
+		const { unanswered, answered, authedUser } = this.props
 		return (
 			<div className='questions-list container-qlist'>
 				<Tabs>
@@ -28,9 +28,10 @@ class QuestionsList extends Component {
 				  							key={q.id}
 				  							id={q.id}
 				  							author={q.author}
+				  							authedUser={authedUser.loggedUserId}
 				  							avatarURL={this.getAvatar(q)}
-				  							optionOne={q.optionOne.text}
-				  							optionTwo={q.optionTwo.text}
+				  							optionOne={q.optionOne}
+				  							optionTwo={q.optionTwo}
 				  							onHandleSubmit={this.props.onHandleSubmit}
 				  							onChange={this.props.onUserVote}
 				  							buttonValue={'Submit'}
@@ -41,11 +42,11 @@ class QuestionsList extends Component {
 				  		return <QuestionPrev
 				  							key={q.id}
 				  							id={q.id}
-				  							users={users}
 				  							author={q.author}
+				  							authedUser={authedUser.loggedUserId}
 				  							avatarURL={this.getAvatar(q)}
-				  							optionOne={q.optionOne.text}
-				  							optionTwo={q.optionTwo.text}
+				  							optionOne={q.optionOne}
+				  							optionTwo={q.optionTwo}
 				  							buttonValue={'Results'}
 				  					/>})}
 			    </TabPanel>

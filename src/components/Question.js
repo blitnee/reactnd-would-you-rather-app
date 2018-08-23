@@ -23,7 +23,8 @@ class Question extends Component {
 	}
 
 	getVotes() {
-		let votes = ((this.state.question.optionOne.votes.length) + (this.state.question.optionTwo.votes.length))
+		let votes = ((this.state.question.optionOne.votes.length) +
+								(this.state.question.optionTwo.votes.length))
 		return votes
 	}
 

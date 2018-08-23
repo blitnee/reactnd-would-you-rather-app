@@ -4,8 +4,21 @@ import { Link } from 'react-router-dom'
 
 class QuestionPrev extends Component {
 
-	handleClick = (vote) => {
-		//dispatch(saveQuestionAnswer(this.state.vote))
+	state = {
+		vote: ''
+	}
+
+	componentDidMount() {
+		if (this.props.optionOne.votes.includes(this.props.authedUser)) {
+			this.setState({ vote: 'optionOne' })
+		} else if (this.props.optionTwo.votes.includes(this.props.authedUser)) {
+			this.setState({ vote: 'optionTwo' })
+		}
+	}
+
+	handleClick = (e) => {
+		this.setState({ vote: e.target.value })
+		// dispatch(saveQuestionAnswer(this.state.vote))
 	}
 
 	getButtonType = (value) => {
@@ -13,9 +26,12 @@ class QuestionPrev extends Component {
 			? <button className='pole-button container-element'>{value}</button>
 			: <Link to={`/question/${this.props.id}`}><button className='pole-button container-element'>{value}</button></Link>
 	}
+	getValue = (vote) => {
+		return this.state.vote === vote
+	}
 
 	render() {
-		const { id, avatarURL, author, optionOne, optionTwo, buttonValue  }  = this.props
+		const { id, authedUser, avatarURL, author, optionOne, optionTwo, buttonValue }  = this.props
 		return (
 			<div className='question-card container-element'>
 				<h3 className='question-card-title container-element'>
@@ -24,36 +40,39 @@ class QuestionPrev extends Component {
 					<span>{author}</span>
 				</h3>
 				<div className="block-container">
-				{/* @todo: Onclick send to '/question/#/vote' */}
 					<div className='question-card-block container-element'>
 						<h4 className='question-title'>Would You Rather...</h4>
 						<div className='question-select'>
-							<label htmlFor='option-one' className='question-option-label'>
-								{/* @todo: Uncheck value bug */}
-								<input
-									id='option-one'
-									type='radio'
-									value={this.props.optionOne}
-									// onChange={this.handleClick(optionOne.text)}
-								/>
-								{optionOne}
-							</label>
-							<label htmlFor='option-two' className='question-option-label'>
-								<input
-									id='option-two'
-									type='radio'
-									value={this.props.optionTwo}
-									// onChange={this.handleClick(optionTwo.text)}
-								/>
-								{optionTwo}
-							</label>
+							<form action=''>
+								<label htmlFor='option-one' className='question-option-label'>
+									<input
+										id='option-one'
+										type='radio'
+										name='option'
+										value='optionOne'
+										checked={this.getValue('optionOne')}
+										onChange={(e) => this.handleClick(e)}
+									/>
+									{optionOne.text}
+								</label>
+								<label htmlFor='option-two' className='question-option-label'>
+									<input
+										id='option-two'
+										type='radio'
+										name='option'
+										value='optionTwo'
+										checked={this.getValue('optionTwo')}
+										onChange={(e) => this.handleClick(e)}
+									/>
+									{optionTwo.text}
+								</label>
+							</form>
 						</div>
 					</div>
 				</div>
 				<div className="button-container">
-				{/* @todo: Onclick send to '/question/#/results' */}
+				{/* @todo: OnSubmit send to '/question/id' ? */}
 					{this.getButtonType(buttonValue)}
-
 				</div>
 			</div>
 		)
