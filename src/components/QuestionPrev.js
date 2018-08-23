@@ -71,6 +71,7 @@ class QuestionPrev extends Component {
 					</div>
 				</div>
 				<div className="button-container">
+				{/* @todo: OnChange populate with submit for new answer*/}
 				{/* @todo: OnSubmit send to '/question/id' ? */}
 					{this.getButtonType(buttonValue)}
 				</div>

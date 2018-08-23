@@ -22,14 +22,17 @@ class Question extends Component {
 		}
 	}
 
-	getVotes() {
+	getVotes = () => {
 		let votes = ((this.state.question.optionOne.votes.length) +
 								(this.state.question.optionTwo.votes.length))
 		return votes
 	}
+	getValue = (votes) => {
+		return votes.includes(this.props.authedUser)
+	}
 
 	render () {
-		const { question, vote, votes } = this.state
+		const { question, vote } = this.state
 		const data = [
 			{name: question.optionOne.text, value: question.optionOne.votes.length},
 			{name: question.optionTwo.text, value: question.optionTwo.votes.length}]
@@ -61,14 +64,14 @@ class Question extends Component {
 						<div className='question-card-block container-element'>
 							<h4 className='question-title'>Would You Rather...</h4>
 							<div className='question-select'>
-								{/* <span className={vote === 'optionOne'&&'userSelect'}>{/* add as a bubble */}
 								<span className='option-one'>
 									<label htmlFor='option-one' className='question-option-stat-label'>
 										{/* @todo: Add border color for user's vote */}
 										<input
 											id='option-one'
 											type='radio'
-											// value={this.props.optionOne}
+											checked={this.getValue(question.optionOne.votes)}
+											readOnly
 										/>
 										{question.optionOne.text}
 									</label>
@@ -82,7 +85,8 @@ class Question extends Component {
 										<input
 											id='option-two'
 											type='radio'
-											// value={this.props.optionTwo}
+											checked={this.getValue(question.optionTwo.votes)}
+											readOnly
 										/>
 										{question.optionTwo.text}
 									</label>
