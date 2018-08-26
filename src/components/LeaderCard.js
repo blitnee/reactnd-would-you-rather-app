@@ -8,7 +8,7 @@ class LeaderCard extends Component {
 				<div className='leader-rank'>{index}</div>
 				<div className='leader-info'>
 					<div className='leader-header'>
-						<img src="avatar" />
+						<img src='avatar' alt='user avatar'/>
 						<h3 className='leader-card-title'>{name}</h3>
 					</div>
 					<div className='leader-stats-container'>

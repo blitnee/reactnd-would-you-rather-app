@@ -47,6 +47,7 @@ a.nav-item {
   height: 100%;
   padding: 5px;
 }
+
 /**
  * Questions List
  */
@@ -99,6 +100,7 @@ a.nav-item {
 }
 .question-select {
 	display: grid;
+  padding: 0 .5em;
 }
 .question-option-label {
   padding: .5em;
@@ -173,6 +175,7 @@ a.nav-item {
   color: white;
   height: 20px;
   width: 20px;
+  display: table;
   text-align: center;
 }
 .vote-text {
