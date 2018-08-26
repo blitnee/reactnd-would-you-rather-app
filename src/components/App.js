@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as  Router, Route, Switch, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import Nav from './Nav'
@@ -15,22 +15,33 @@ class App extends Component {
 		this.props.dispatch(handleInitialData())
 	}
 
+  displayNav() {
+    if(this.props.authed) {
+      return <Nav authedUser={this.props.authedUser} />
+    }
+  }
+
   render() {
+    const { authed } = this.props
+    const PrivateRoute = ({ component: Component, ...rest }) => (
+      <Route {...rest} render={(props) => (
+        authed === true
+          ? <Component {...props} />
+          : <Redirect to='/signin' />
+      )}/>
+    )
     return (
       <Router>
         <Fragment>
           {/* <LoadingBar /> */}
-          <div className="App">
-            {this.props.authed === false
-              ? <SignIn />
-              : <div className='container'>
-                  <Nav />
-                  <Route path='/' exact component={ Dashboard } />
-                  <Route path='/leaderboard' component={ LeaderBoard } />
-                  <Route path='/question/:id' component={ Question } />
-                </div>
-              }
-          </div>
+          {this.displayNav()}
+          <Switch>
+            <Route path='/signin' component={ SignIn } />
+            <PrivateRoute path='/' exact component={ Dashboard } />
+            <PrivateRoute path='/leaderboard' component={ LeaderBoard } />
+            <PrivateRoute path='/question/:id' component={ Question } />
+            <PrivateRoute path='/add' component={ NewQuestion } />
+          </Switch>
         </Fragment>
       </Router>
     )
@@ -40,7 +51,8 @@ class App extends Component {
 
 function mapStateToProps ({ authedUser }) {
   return {
-    authed: authedUser.authenticated
+    authed: authedUser.authenticated,
+    authedUser: authedUser.loggedUserId
   }
 }
 

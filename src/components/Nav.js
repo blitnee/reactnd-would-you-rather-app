@@ -10,6 +10,7 @@ class Nav extends Component {
 		return (e) => this.props.dispatch(logout())
 	}
 	render () {
+		const { authedUser } = this.props
 		return (
 			<nav className='nav container-nav'>
 				<div className='nav-items'>
@@ -23,7 +24,7 @@ class Nav extends Component {
               <DropdownTrigger>
               	<span className='nav-item'>
 									{/* @todo: Add avatar */}
-									Hello, {this.props.authedUser.loggedUserId}	&#9662;
+									Hello, {authedUser}	&#9662;
 								</span>
 							</DropdownTrigger>
               <DropdownContent>
@@ -44,7 +45,7 @@ class Nav extends Component {
 
 function mapStateToProps ({ authedUser }) {
   return {
-    authedUser: authedUser
+    authedUser: authedUser.loggedUserId
   }
 }
 
