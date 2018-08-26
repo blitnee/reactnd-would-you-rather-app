@@ -8,6 +8,7 @@ import Question from './Question'
 import LeaderBoard from './LeaderBoard'
 import NewQuestion from './NewQuestion'
 import SignIn from './SignIn'
+import NotFound from './NotFound'
 
 class App extends Component {
 
@@ -41,6 +42,7 @@ class App extends Component {
             <PrivateRoute path='/leaderboard' component={ LeaderBoard } />
             <PrivateRoute path='/question/:id' component={ Question } />
             <PrivateRoute path='/add' component={ NewQuestion } />
+            <Route component={NotFound} />
           </Switch>
         </Fragment>
       </Router>
