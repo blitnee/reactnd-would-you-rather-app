@@ -14,12 +14,12 @@ class QuestionsList extends Component {
 	render() {
 		const { unanswered, answered, authedUser } = this.props
 		return (
-			<div className='questions-list container-qlist'>
+			<div className='container-content container-element'>
 				<Tabs>
 			    <TabList className='tab-list container-element'>
-			      <Tab className='tab container-qlist'>
+			      <Tab className='tab hover container-element'>
 			      		 Unanswered Questions</Tab>
-			      <Tab className='tab container-qlist'>
+			      <Tab className='tab hover container-element'>
 			      		 Answered Questions</Tab>
 			    </TabList>
 			    <TabPanel>
@@ -29,11 +29,9 @@ class QuestionsList extends Component {
 				  							id={q.id}
 				  							author={q.author}
 				  							authedUser={authedUser.loggedUserId}
-				  							avatarURL={this.getAvatar(q)}
+				  							avatarURL={authedUser.avatarURL}
 				  							optionOne={q.optionOne}
 				  							optionTwo={q.optionTwo}
-				  							onHandleSubmit={this.props.onHandleSubmit}
-				  							onChange={this.props.onUserVote}
 				  							buttonValue={'Submit'}
 				  							/>})}
 			    </TabPanel>
@@ -44,7 +42,7 @@ class QuestionsList extends Component {
 				  							id={q.id}
 				  							author={q.author}
 				  							authedUser={authedUser.loggedUserId}
-				  							avatarURL={this.getAvatar(q)}
+				  							avatarURL={authedUser.avatarURL}
 				  							optionOne={q.optionOne}
 				  							optionTwo={q.optionTwo}
 				  							buttonValue={'Results'}

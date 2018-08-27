@@ -5,6 +5,16 @@ body {
   font-size: 15px;
 }
 
+.container-content {
+  width: 90%;
+  max-width: 450px;
+  margin: 1em auto 1em auto;
+  padding: auto;
+}
+.hover:hover {
+  background-color: green;
+}
+
 /**
  * Nav
  */
@@ -51,11 +61,6 @@ a.nav-item {
 /**
  * Questions List
  */
-.questions-list {
-  width: 90%;
-  margin: 1em auto 1em auto;
-  padding: auto;
-}
 .tab-list {
   margin: 0;
   padding: 0;
@@ -113,11 +118,6 @@ a.nav-item {
   padding: .5em;
   margin: .5em;
 }
-.question-container {
-  width: 90%;
-  margin: 1em auto 1em auto;
-  padding: auto;
-}
 .question-input-label {
   display: inline-grid;
   padding-bottom: 1em;
@@ -134,14 +134,10 @@ a.nav-item {
 /**
  * Question Stat
  */
-.question-card-container {
-  width: 90%;
-  margin: 1em auto 1em auto;
-  padding: auto;
-}
 .question-option-stat-label {
   padding: .5em;
   display: table-cell;
+  color: white;
 }
 .option-one {
   background-color: #0088fd;
@@ -211,12 +207,6 @@ a.nav-item {
 	margin: 0;
 	padding: .5em;
 }
-.signin-image-container {
-
-}
-.signin-image {
-
-}
 .signin-select-container {
 	text-align: center;
 }
@@ -238,9 +228,6 @@ a.nav-item {
  * Leader Board
  */
 .leader-container {
-  width: 90%;
-  margin: 1em auto 1em auto;
-  padding: auto;
   display: block;
 }
 .leader-card {
@@ -281,31 +268,16 @@ a.nav-item {
  * Not Found
  */
 .not-found-container {
-  border: 1px solid;
   width: 90%;
   margin: 1em auto 1em auto;
   text-align: center;
 }
 
 
-/* ********* For testing ********* */
-.container-qlist {
-	border: 1px solid green;
-}
-
+/* ********* For Testing ********* */
 .container-nav {
 	border: 1px solid red;
 }
-
-.container-signIn {
-	border: 1px solid orange;
-}
-
-.container-element-con {
-	border: 1px solid green;
-}
-
 .container-element {
-	border: 1px solid blue;
+	border: 1px solid black;
 }
-

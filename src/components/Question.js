@@ -54,7 +54,7 @@ class Question extends Component {
 		}
 
 		return (
-			<div className='question-card-container container-element'>
+			<div className='container-content container-element'>
 				<div className='question-card container-element'>
 					<h3 className='question-card-title container-element'>
 						<span>{question.author}</span>

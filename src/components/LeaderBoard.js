@@ -19,7 +19,7 @@ class LeaderBoard extends Component {
 		})
 
 		return (
-			<div className='leader-container container-element'>
+			<div className='leader-container container-content container-element'>
 				{leaders.sort((a,b) => {
 					return b.score - a.score
 				}).map((u, index) => {

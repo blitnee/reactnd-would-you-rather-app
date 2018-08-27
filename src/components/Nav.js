@@ -15,21 +15,21 @@ class Nav extends Component {
 			<nav className='nav container-nav'>
 				<div className='nav-items'>
 					<span className='nav-items-left'>
-						<Link to='/' className='nav-item'>Home</Link>
-						<Link to='/add' className='nav-item'>New</Link>
-						<Link to='/leaderboard' className='nav-item'>Leaders</Link>
+						<Link to='/' className='nav-item hover'>Home</Link>
+						<Link to='/add' className='nav-item hover'>New</Link>
+						<Link to='/leaderboard' className='nav-item hover'>Leaders</Link>
 					</span>
 					<span className='nav-items-right'>
 						<Dropdown removeElement>
               <DropdownTrigger>
-              	<span className='nav-item'>
+              	<span className='nav-item hover'>
 									{/* @todo: Add avatar */}
 									Hello, {authedUser}	&#9662;
 								</span>
 							</DropdownTrigger>
               <DropdownContent>
               	<ul className='drop-list'>
-									<li className='drop-item'
+									<li className='drop-item hover'
 											onClick={this.handleLogout()}>
 											Logout
 									</li>

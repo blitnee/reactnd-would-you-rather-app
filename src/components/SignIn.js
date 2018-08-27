@@ -17,11 +17,9 @@ class SignIn extends Component {
 	render() {
 		const { authedUser } = this.props
 		return (
-			<div className='signin-container container-signIn'>
-			{ authedUser.authenticated
-				? <div>Welcome back {authedUser.loggedUserId}!</div>
-				: <div>
-					<header className='signin-header container-element-con'>
+			<div className='signin-container container-content container-element'>
+				<div>
+					<header className='signin-header container-element'>
 						<p className='title container-element'>Would You Rather</p>
 						<p className='subtitle container-element'>Please sign in to continue</p>
 					</header>
@@ -38,13 +36,11 @@ class SignIn extends Component {
 											 </option>
 							})}
 						</select>
-						</div>
-						<div className='button-container'>
-							<button className='signin-button container-element' disabled={ this.state.userId === '' } onClick={this.handleSubmit}>Sign In</button>
-						</div>
 					</div>
-			}
-
+					<div className='button-container'>
+						<button className='signin-button container-element hover' disabled={ this.state.userId === '' } onClick={this.handleSubmit}>Sign In</button>
+					</div>
+				</div>
 			</div>
 		)
 	}
