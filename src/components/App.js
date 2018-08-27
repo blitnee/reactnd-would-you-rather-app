@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
-import { BrowserRouter as  Router, Route, Switch, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { BrowserRouter as  Router, Route, Switch, Redirect } from 'react-router-dom'
+import LoadingBar from 'react-redux-loading-bar'
 import { handleInitialData } from '../actions/shared'
 import Nav from './Nav'
 import Dashboard from './Dashboard'
@@ -23,7 +24,7 @@ class App extends Component {
   }
 
   render() {
-    const { authed } = this.props
+    const { authed, loading } = this.props
     const PrivateRoute = ({ component: Component, ...rest }) => (
       <Route {...rest} render={(props) => (
         authed === true
@@ -34,16 +35,16 @@ class App extends Component {
     return (
       <Router>
         <Fragment>
-          {/* <LoadingBar /> */}
           {this.displayNav()}
-          <Switch>
-            <Route path='/signin' component={ SignIn } />
-            <PrivateRoute path='/' exact component={ Dashboard } />
-            <PrivateRoute path='/leaderboard' component={ LeaderBoard } />
-            <PrivateRoute path='/question/:id' component={ Question } />
-            <PrivateRoute path='/add' component={ NewQuestion } />
-            <Route component={NotFound} />
-          </Switch>
+          <LoadingBar />
+              <Switch>
+                <Route path='/signin' component={ SignIn } />
+                <PrivateRoute path='/' exact component={ Dashboard }/>
+                <PrivateRoute path='/leaderboard' component={ LeaderBoard } />
+                <PrivateRoute path='/question/:id' component={ Question } />
+                <PrivateRoute path='/add' component={ NewQuestion } />
+                <Route component={NotFound} />
+              </Switch>
         </Fragment>
       </Router>
     )
@@ -51,10 +52,11 @@ class App extends Component {
 
 }
 
-function mapStateToProps ({ authedUser }) {
+function mapStateToProps ({ authedUser, loadingBar }) {
   return {
     authed: authedUser.authenticated,
-    authedUser: authedUser.loggedUserId
+    authedUser: authedUser.loggedUserId,
+    loading: loadingBar
   }
 }
 
