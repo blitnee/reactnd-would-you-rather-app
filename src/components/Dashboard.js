@@ -18,7 +18,7 @@ class Dashboard extends Component {
 		let answered = []
 		let unanswered = []
 		questions.map((q) => {
-			q.optionOne.votes.concat(q.optionTwo.votes).includes(this.props.authedUser.loggedUserId)
+			return q.optionOne.votes.concat(q.optionTwo.votes).includes(this.props.authedUser.loggedUserId)
 				? answered.push(q)
 				: unanswered.push(q)
 		})
@@ -26,28 +26,16 @@ class Dashboard extends Component {
 		this.setState({ unanswered: unanswered})
 	}
 
-	userVote = () => {
-		// Change State of user's vote
-	}
-
-	handleSubmit = () => {
-		// Handle form submission
-	}
-
 	render() {
 		const { unanswered, answered } = this.state
 		const { authedUser, users } = this.props
 		return (
-			<div>
-				<QuestionsList
-					unanswered={unanswered}
-					answered={answered}
-					authedUser={authedUser}
-					users={users}
-					onHandleSubmit={this.handleSubmit}
-					onUserVote={this.userVote}
-				/>
-			</div>
+			<QuestionsList
+				unanswered={unanswered}
+				answered={answered}
+				authedUser={authedUser}
+				users={users}
+			/>
 		)
 	}
 }

@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
-import { saveQuestionAnswer } from '../actions/questions'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { handleQuestionAnswer } from '../actions/questions'
 
 class QuestionPrev extends Component {
 
 	state = {
-		vote: ''
+		vote: '',
+		unanswered: false,
+		showSubmit: false
 	}
 
 	componentDidMount() {
@@ -13,25 +16,38 @@ class QuestionPrev extends Component {
 			this.setState({ vote: 'optionOne' })
 		} else if (this.props.optionTwo.votes.includes(this.props.authedUser)) {
 			this.setState({ vote: 'optionTwo' })
+		} else {
+			this.setState({ unanswered: true })
 		}
 	}
 
-	handleClick = (e) => {
+	handleRevote = (e) => {
 		this.setState({ vote: e.target.value })
-		// dispatch(saveQuestionAnswer(this.state.vote))
+		this.state.unanswered === false && this.setState({ showSubmit: true })
+	}
+
+	handleSubmit = (e) => {
+		e.preventDefault()
+		let info = {
+			authedUser: this.props.authedUser,
+			qid: this.props.id,
+			answer: this.state.vote
+		}
+    this.props.dispatch(handleQuestionAnswer(info))
 	}
 
 	getButtonType = (value) => {
 		return value === 'Submit'
-			? <button className='pole-button container-element'>{value}</button>
-			: <Link to={`/question/${this.props.id}`}><button className='pole-button container-element'>{value}</button></Link>
+			? <button onClick={(e) => this.handleSubmit(e)} className='pole-button hover container-element'>{value}</button>
+			: <Link to={`/question/${this.props.id}`}><button className='pole-button hover container-element'>{value}</button></Link>
 	}
+
 	getValue = (vote) => {
 		return this.state.vote === vote
 	}
 
 	render() {
-		const { id, authedUser, avatarURL, author, optionOne, optionTwo, buttonValue }  = this.props
+		const { avatarURL, author, optionOne, optionTwo, buttonValue }  = this.props
 		return (
 			<div className='question-card container-element'>
 				<h3 className='question-card-title container-element'>
@@ -50,7 +66,7 @@ class QuestionPrev extends Component {
 									name='option'
 									value='optionOne'
 									checked={this.getValue('optionOne')}
-									onChange={(e) => this.handleClick(e)}
+									onChange={(e) => this.handleRevote(e)}
 								/>
 								{optionOne.text}
 							</label>
@@ -61,7 +77,7 @@ class QuestionPrev extends Component {
 									name='option'
 									value='optionTwo'
 									checked={this.getValue('optionTwo')}
-									onChange={(e) => this.handleClick(e)}
+									onChange={(e) => this.handleRevote(e)}
 								/>
 								{optionTwo.text}
 							</label>
@@ -69,8 +85,8 @@ class QuestionPrev extends Component {
 					</div>
 				</div>
 				<div className="button-container">
-				{/* @todo: OnChange populate with submit for new answer*/}
 				{/* @todo: OnSubmit send to '/question/id' ? */}
+				{this.state.showSubmit === true && <button onClick={(e) => this.handleSubmit(e)} className='pole-button container-element'>Resubmit</button>}
 					{this.getButtonType(buttonValue)}
 				</div>
 			</div>
@@ -78,4 +94,14 @@ class QuestionPrev extends Component {
 	}
 }
 
-export default QuestionPrev
+// export default QuestionPrev
+
+function mapStateToProps ({ authedUser }) {
+  return {
+    authed: authedUser.authenticated,
+    authedUser: authedUser.loggedUserId
+  }
+}
+
+export default connect(mapStateToProps)(QuestionPrev)
+

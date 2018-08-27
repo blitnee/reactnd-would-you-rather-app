@@ -7,6 +7,29 @@ export const ADD_QUESTION = 'ADD_QUESTION'
 export function receiveQuestions (questions) {
 	return {
 		type: RECEIVE_QUESTIONS,
-		questions,
+		questions
 	}
+}
+
+export function answerQuestion (info) {
+	return {
+		type: ANSWER_QUESTION,
+		info
+	}
+}
+
+export function handleQuestionAnswer (info) {
+  return dispatch => {
+    dispatch(showLoading())
+    saveQuestionAnswer(info)
+      .then(() => {
+        dispatch(answerQuestion(info))
+        dispatch(hideLoading())
+      })
+      .catch(e => {
+        dispatch(hideLoading())
+        console.warn('Error in handleAnswerQuestion: ', e)
+        alert('There was an error answering the question. Try again.')
+      })
+  }
 }
