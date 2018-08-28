@@ -12,6 +12,13 @@ export function receiveQuestions (questions) {
 	}
 }
 
+export function addQuestion(question) {
+  return {
+    type: ADD_QUESTION,
+    question
+  }
+}
+
 export function answerQuestion (info) {
 	return {
 		type: ANSWER_QUESTION,
@@ -19,7 +26,24 @@ export function answerQuestion (info) {
 	}
 }
 
-export function handleQuestionAnswer (info) {
+export function handleAddQuestion(info) {
+  console.log('handleAddQuestion: ', info)
+  return dispatch => {
+    dispatch(showLoading())
+    saveQuestion(info)
+      .then(question => {
+        dispatch(addQuestion(question))
+        dispatch(hideLoading())
+      })
+      .catch(e => {
+        dispatch(hideLoading())
+        console.warn('Error in handleAddQuestion: ', e)
+        alert('There was an error adding the question. Try again.')
+      })
+  }
+}
+
+export function handleAnswerQuestion (info) {
   return dispatch => {
     dispatch(showLoading())
     saveQuestionAnswer(info)
