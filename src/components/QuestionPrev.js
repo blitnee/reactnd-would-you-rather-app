@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { handleQuestionAnswer } from '../actions/questions'
+import { handleAnswerQuestion } from '../actions/questions'
 
 class QuestionPrev extends Component {
 
@@ -33,12 +33,12 @@ class QuestionPrev extends Component {
 			qid: this.props.id,
 			answer: this.state.vote
 		}
-    this.props.dispatch(handleQuestionAnswer(info))
+    this.props.dispatch(handleAnswerQuestion(info))
 	}
 
 	getButtonType = (value) => {
 		return value === 'Submit'
-			? <button onClick={(e) => this.handleSubmit(e)} className='pole-button hover container-element'>{value}</button>
+			? <button disabled={this.state.vote === ''} onClick={(e) => this.handleSubmit(e)} className='pole-button hover container-element'>{value}</button>
 			: <Link to={`/question/${this.props.id}`}><button className='pole-button hover container-element'>{value}</button></Link>
 	}
 
@@ -86,7 +86,10 @@ class QuestionPrev extends Component {
 				</div>
 				<div className="button-container">
 				{/* @todo: OnSubmit send to '/question/id' ? */}
-				{this.state.showSubmit === true && <button onClick={(e) => this.handleSubmit(e)} className='pole-button container-element'>Resubmit</button>}
+				{this.state.showSubmit === true &&
+					<button
+						onClick={(e) => this.handleSubmit(e)}
+						className='pole-button container-element'>Resubmit</button>}
 					{this.getButtonType(buttonValue)}
 				</div>
 			</div>
