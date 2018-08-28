@@ -15,7 +15,8 @@ class SignIn extends Component {
 		this.props.dispatch(login(this.state.userId))
 	}
 	render() {
-		const { authedUser } = this.props
+		const { authedUser, users } = this.props
+
 		return (
 			<div className='signin-container container-content container-element'>
 				<div>
@@ -29,9 +30,8 @@ class SignIn extends Component {
 						<label htmlFor='userIds' className='signin-label'>Sign In</label>
 						<select id='userIds' className='signin-select' onChange={(e) => this.setUser(e.target.value)}>
 							<option value='' className='select-placeholder'>Select User</option>
-							{/* @todo: Add Avatar */}
-							{this.props.users.map((user) => {
-								return <option key={user.id} value={user.id} style={{backgroundImage: `url(${user.avatarURL})`}}>
+							{users.map((user) => {
+								return <option key={user.id} value={user.id}>
 												{user.name}
 											 </option>
 							})}

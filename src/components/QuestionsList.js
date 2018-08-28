@@ -1,18 +1,12 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import QuestionPrev from './QuestionPrev'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 class QuestionsList extends Component {
 
-	getAvatar (author) {
-		let user = this.props.users.filter((u) => {
-			return u.id === author.author
-		})
-		return user[0].avatarURL // @todo: Fix this.
-	}
-
 	render() {
-		const { unanswered, answered, authedUser } = this.props
+		const { unanswered, answered, users } = this.props
 		return (
 			<div className='container-content container-element'>
 				<Tabs>
@@ -28,7 +22,6 @@ class QuestionsList extends Component {
 				  							key={q.id}
 				  							id={q.id}
 				  							author={q.author}
-				  							authedUser={authedUser.loggedUserId}
 				  							avatarURL={authedUser.avatarURL}
 				  							optionOne={q.optionOne}
 				  							optionTwo={q.optionTwo}
@@ -41,8 +34,7 @@ class QuestionsList extends Component {
 				  							key={q.id}
 				  							id={q.id}
 				  							author={q.author}
-				  							authedUser={authedUser.loggedUserId}
-				  							avatarURL={authedUser.avatarURL}
+				  							avatar={users[q.author].avatarURL}
 				  							optionOne={q.optionOne}
 				  							optionTwo={q.optionTwo}
 				  							buttonValue={'Results'}
@@ -54,4 +46,12 @@ class QuestionsList extends Component {
 	}
 }
 
-export default QuestionsList
+function mapStateToProps ({ authedUser, users }) {
+  return {
+    authed: authedUser.authenticated,
+    authedUser: authedUser.loggedUserId,
+    users
+  }
+}
+
+export default connect(mapStateToProps)(QuestionsList)

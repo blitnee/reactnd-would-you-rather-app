@@ -10,7 +10,7 @@ class Nav extends Component {
 		return (e) => this.props.dispatch(logout())
 	}
 	render () {
-		const { authedUser } = this.props
+		const { authedUser, avatar } = this.props
 		return (
 			<nav className='nav container-nav'>
 				<div className='nav-items'>
@@ -22,10 +22,10 @@ class Nav extends Component {
 					<span className='nav-items-right'>
 						<Dropdown removeElement>
               <DropdownTrigger>
-              	<span className='nav-item hover'>
-									{/* @todo: Add avatar */}
-									Hello, {authedUser}	&#9662;
-								</span>
+              	<span className='nav-user'>
+	                <img className='nav-avatar' src={avatar} alt='user avatar'/>
+	              	<span className='nav-item hover'>Hello, {authedUser}	&#9662;</span>
+	              </span>
 							</DropdownTrigger>
               <DropdownContent>
               	<ul className='drop-list'>
@@ -45,7 +45,8 @@ class Nav extends Component {
 
 function mapStateToProps ({ authedUser }) {
   return {
-    authedUser: authedUser.loggedUserId
+    authedUser: authedUser.loggedUserId,
+    avatar: authedUser.authedAvatar
   }
 }
 

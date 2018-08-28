@@ -47,14 +47,13 @@ class QuestionPrev extends Component {
 	}
 
 	render() {
-		const { avatarURL, author, optionOne, optionTwo, buttonValue }  = this.props
+		const { avatar, author, optionOne, optionTwo, buttonValue }  = this.props
 		return (
 			<div className='question-card container-element'>
-				<h3 className='question-card-title container-element'>
-				 {/* <div style={{ backgroundImage: `url(${avatarURL})` }} /> */}
-					<img src={avatarURL} />
-					<span>{author}</span>
-				</h3>
+				<div className='question-card-header container-element'>
+					<img className='question-card-avatar' src={avatar} alt='user avatar' />
+					<h3>{author}</h3>
+				</div>
 				<div className="block-container">
 					<div className='question-card-block container-element'>
 						<h4 className='question-title'>Would You Rather...</h4>

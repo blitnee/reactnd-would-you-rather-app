@@ -12,6 +12,7 @@ class LeaderBoard extends Component {
 			return {
 				name: u.name,
 				id: u.id,
+				avatar: u.avatarURL,
 				aTotal: aTotal,
 				qTotal: qTotal,
 				score: score
@@ -28,6 +29,7 @@ class LeaderBoard extends Component {
 						key={u.id}
 						index={index}
 						name={u.name}
+						avatar={u.avatar}
 						answers={u.aTotal}
 						questions={u.qTotal}
 						score={u.score}/>
