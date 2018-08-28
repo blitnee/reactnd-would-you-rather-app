@@ -49,7 +49,6 @@ class App extends Component {
       </Router>
     )
   }
-
 }
 
 function mapStateToProps ({ authedUser, loadingBar }) {

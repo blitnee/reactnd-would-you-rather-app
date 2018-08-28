@@ -1,19 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { BrowserRouter as  Router, Route, Redirect } from 'react-router-dom'
 import { login } from '../actions/authedUser'
 
 class SignIn extends Component {
+
 	state = {
 		userId: '',
 	}
+
 	setUser = (userId) => {
 		this.setState({ userId })
 	}
+
 	handleSubmit = (e) => {
 		e.preventDefault()
 		this.props.dispatch(login(this.state.userId))
 	}
+
 	render() {
 		const { authedUser, users } = this.props
 

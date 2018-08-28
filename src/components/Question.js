@@ -26,6 +26,7 @@ class Question extends Component {
 								(this.state.question.optionTwo.votes.length))
 		return votes
 	}
+
 	getValue = (votes) => {
 		return votes.includes(this.props.authedUser)
 	}
@@ -52,7 +53,6 @@ class Question extends Component {
 		    </text>
 		  )
 		}
-
 		return (
 			<div className='container-content container-element'>
 				<div className='question-card container-element'>

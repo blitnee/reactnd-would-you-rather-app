@@ -96,8 +96,6 @@ class QuestionPrev extends Component {
 	}
 }
 
-// export default QuestionPrev
-
 function mapStateToProps ({ authedUser }) {
   return {
     authed: authedUser.authenticated,
@@ -106,4 +104,3 @@ function mapStateToProps ({ authedUser }) {
 }
 
 export default connect(mapStateToProps)(QuestionPrev)
-

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 class LeaderCard extends Component {
+
 	render() {
 		const { index, name, avatar, answers, questions, score } = this.props
 

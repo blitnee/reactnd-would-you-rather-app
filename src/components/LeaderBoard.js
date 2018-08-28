@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import LeaderCard from './LeaderCard'
 
 class LeaderBoard extends Component {
+
 	render() {
 		const { users } = this.props
 		const leaders = users.map((u)=> {
@@ -18,7 +19,6 @@ class LeaderBoard extends Component {
 				score: score
 			}
 		})
-
 		return (
 			<div className='leader-container container-content container-element'>
 				{leaders.sort((a,b) => {

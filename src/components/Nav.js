@@ -9,6 +9,7 @@ class Nav extends Component {
 	handleLogout = (e) => {
 		return (e) => this.props.dispatch(logout())
 	}
+
 	render () {
 		const { authedUser, avatar } = this.props
 		return (
