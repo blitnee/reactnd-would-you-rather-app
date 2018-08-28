@@ -1,28 +1,76 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { handleAddQuestion } from '../actions/questions';
 
 class NewQuestion extends Component {
 
+  state = {
+    optionOneText: '',
+    optionTwoText: '',
+		disableSubmit: true
+  }
+
+  handleOptionOneChange = (e) => {
+    const optionOneText = e.target.value
+    this.setState(currentState => ({
+      optionOneText,
+      disableSubmit: optionOneText === '' || currentState.optionOneText === ''
+    }))
+  }
+
+  handleOptionTwoChange = (e) => {
+    const optionTwoText = e.target.value;
+    this.setState(currentState => ({
+      optionTwoText,
+      disableSubmit: optionTwoText === '' || currentState.optionOneText === ''
+    }))
+  }
+
+  handleAddQuestion = (e) => {
+  	e.preventDefault()
+  	let optionOneText = this.state.optionOneText
+  	let optionTwoText = this.state.optionTwoText
+  	let author = this.props.authedUser
+    this.props.dispatch(handleAddQuestion({ optionOneText, optionTwoText, author }))
+  }
+
 	render() {
+		const { optionOneText, optionTwoText, disableSubmit } = this.state
 		return (
 			<div className='container-content'>
 				<div className='new-question-card container-element'>
 					<div className='question-card-block container-element'>
 						<h4 className='question-title'>Would You Rather...</h4>
-						<div className='question-select'>
+						<form className='question-form'>
 							<label htmlFor='option-one' className='question-input-label'>
-								Option One:
-								<input id='option-one' className='question-input' type='text' />
+								<input
+									id='option-one'
+									className='question-input'
+									type='text'
+									value={optionOneText}
+									onChange={this.handleOptionOneChange}
+									placeholder='Option One'
+									/>
 							</label>
 							<label htmlFor='option-two' className='question-input-label'>
-								Option Two:
-								<input id='option-two' className='question-input' type='text' />
+								<input
+									id='option-two'
+									className='question-input'
+									type='text'
+									value={optionTwoText}
+									onChange={this.handleOptionTwoChange}
+									placeholder='Option One'
+									/>
 							</label>
-						</div>
+						</form>
 					</div>
 					<div className="button-container">
-						{/* @todo: Onclick save question */}
-						<button className='submit-question-button hover container-element'>Submit</button>
+						<button
+						  disabled={disableSubmit}
+              type="submit"
+              onClick={this.handleAddQuestion}
+              className='submit-question-button hover container-element'>Submit</button>
 					</div>
 				</div>
 			</div>
@@ -30,9 +78,10 @@ class NewQuestion extends Component {
 	}
 }
 
-function mapStateToProps ({ questions }) {
+function mapStateToProps ({ authedUser, questions }) {
 	return {
-		questions: Object.values(questions)
+		questions: Object.values(questions),
+		authedUser: authedUser.loggedUserId
 	}
 }
 
