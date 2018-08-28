@@ -18,16 +18,16 @@ class App extends Component {
 	}
 
   displayNav() {
-    if(this.props.authed) {
+    if(this.props.isAuthenticated) {
       return <Nav authedUser={this.props.authedUser} />
     }
   }
 
   render() {
-    const { authed, loading } = this.props
+    const { isAuthenticated, loading } = this.props
     const PrivateRoute = ({ component: Component, ...rest }) => (
       <Route {...rest} render={(props) => (
-        authed === true
+        isAuthenticated === true
           ? <Component {...props} />
           : <Redirect to='/signin' />
       )}/>
@@ -37,14 +37,16 @@ class App extends Component {
         <Fragment>
           {this.displayNav()}
           <LoadingBar />
-              <Switch>
-                <Route path='/signin' component={ SignIn } />
-                <PrivateRoute path='/' exact component={ Dashboard }/>
-                <PrivateRoute path='/leaderboard' component={ LeaderBoard } />
-                <PrivateRoute path='/question/:id' component={ Question } />
-                <PrivateRoute path='/add' component={ NewQuestion } />
-                <Route component={NotFound} />
-              </Switch>
+          {loading.default === 1 ? null : (
+          <Switch>
+            <PrivateRoute path='/' exact component={ Dashboard }/>
+            <PrivateRoute path='/leaderboard' exact component={ LeaderBoard } />
+            <PrivateRoute path='/question/:id' exact component={ Question } />
+            <PrivateRoute path='/add' exact component={ NewQuestion } />
+            <Route path='/signin' component={ SignIn } />
+            <Route component={ NotFound } />
+          </Switch>
+          )}
         </Fragment>
       </Router>
     )
@@ -53,7 +55,7 @@ class App extends Component {
 
 function mapStateToProps ({ authedUser, loadingBar }) {
   return {
-    authed: authedUser.authenticated,
+    isAuthenticated: authedUser.authenticated,
     authedUser: authedUser.loggedUserId,
     loading: loadingBar
   }

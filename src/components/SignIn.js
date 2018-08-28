@@ -18,32 +18,35 @@ class SignIn extends Component {
 	}
 
 	render() {
-		const { authedUser, users } = this.props
+		const { authedUser, users, isAuthenticated } = this.props
 
 		return (
 			<div className='signin-container container-content container-element'>
-				<div>
-					<header className='signin-header container-element'>
-						<p className='title container-element'>Would You Rather</p>
-						<p className='subtitle container-element'>Please sign in to continue</p>
-					</header>
-					<div className='signin-image-container'>
-					</div>
-					<div className='signin-select-container'>
-						<label htmlFor='userIds' className='signin-label'>Sign In</label>
-						<select id='userIds' className='signin-select' onChange={(e) => this.setUser(e.target.value)}>
-							<option value='' className='select-placeholder'>Select User</option>
-							{users.map((user) => {
-								return <option key={user.id} value={user.id}>
-												{user.name}
-											 </option>
-							})}
-						</select>
-					</div>
-					<div className='button-container'>
-						<button className='signin-button container-element hover' disabled={ this.state.userId === '' } onClick={this.handleSubmit}>Sign In</button>
-					</div>
-				</div>
+				{ isAuthenticated
+					? <h2>Welcome Back, {`${authedUser}`}!</h2>
+					: <div>
+							<header className='signin-header container-element'>
+								<p className='title container-element'>Would You Rather</p>
+								<p className='subtitle container-element'>Please sign in to continue</p>
+							</header>
+							<div className='signin-image-container'>
+							</div>
+							<div className='signin-select-container'>
+								<label htmlFor='userIds' className='signin-label'>Sign In</label>
+								<select id='userIds' className='signin-select' onChange={(e) => this.setUser(e.target.value)}>
+									<option value='' className='select-placeholder'>Select User</option>
+									{users.map((user) => {
+										return <option key={user.id} value={user.id}>
+														{user.name}
+													 </option>
+									})}
+								</select>
+							</div>
+							<div className='button-container'>
+								<button className='signin-button container-element hover' disabled={ this.state.userId === '' } onClick={this.handleSubmit}>Sign In</button>
+							</div>
+						</div>
+				}
 			</div>
 		)
 	}
@@ -52,7 +55,8 @@ class SignIn extends Component {
 function mapStateToProps ({ users, authedUser }) {
   return {
     users: Object.values(users),
-    authedUser: authedUser
+    authedUser: authedUser.loggedUserId,
+    isAuthenticated: authedUser.authenticated
   }
 }
 
