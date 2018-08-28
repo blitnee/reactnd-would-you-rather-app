@@ -22,7 +22,7 @@ class QuestionsList extends Component {
 				  							key={q.id}
 				  							id={q.id}
 				  							author={q.author}
-				  							avatarURL={authedUser.avatarURL}
+				  							avatar={users[q.author].avatarURL}
 				  							optionOne={q.optionOne}
 				  							optionTwo={q.optionTwo}
 				  							buttonValue={'Submit'}
