@@ -15,18 +15,18 @@ class Nav extends Component {
 		return (
 			<nav className='nav container-nav'>
 				<div className='nav-items'>
-					<span className='nav-items-left'>
+					<div className='nav-items-left'>
 						<Link to='/' className='nav-item hover'>Home</Link>
 						<Link to='/add' className='nav-item hover'>New</Link>
 						<Link to='/leaderboard' className='nav-item hover'>Leaders</Link>
-					</span>
-					<span className='nav-items-right'>
+					</div>
+					<div className='nav-items-right'>
 						<Dropdown removeElement>
               <DropdownTrigger>
-              	<span className='nav-user'>
+              	<div className='nav-user'>
 	                <img className='nav-avatar' src={avatar} alt='user avatar'/>
-	              	<span className='nav-item hover'>Hello, {authedUser}	&#9662;</span>
-	              </span>
+	              	<div className='nav-item hover'>Hello, {authedUser}	&#9662;</div>
+	              </div>
 							</DropdownTrigger>
               <DropdownContent>
               	<ul className='drop-list'>
@@ -37,7 +37,7 @@ class Nav extends Component {
 								</ul>
               </DropdownContent>
             </Dropdown>
-					</span>
+					</div>
 				</div>
 			</nav>
 		)
