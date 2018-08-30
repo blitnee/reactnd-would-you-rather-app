@@ -100,10 +100,26 @@ a.nav-item {
   width: 100%;
   padding: .5em 0;
 }
+.question-card-info {
+  width: 100%;
+}
 .question-card-avatar {
   width: 10%;
   height: 10%;
   padding: .5em;
+}
+.question-card-author {
+  margin: 1em 0 0 0;
+}
+.question-card-details {
+  text-decoration: none;
+  color: gray;
+}
+.question-details-text {
+  margin: 0;
+}
+.question-details-text:hover {
+  color: green;
 }
 .block-container {
   display: inline-flex;

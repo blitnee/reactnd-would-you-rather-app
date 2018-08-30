@@ -51,8 +51,13 @@ class QuestionPrev extends Component {
 		return (
 			<div className='question-card container-element'>
 				<div className='question-card-header container-element'>
-					<img className='question-card-avatar' src={avatar} alt='user avatar' />
-					<h3>{author}</h3>
+						<img className='question-card-avatar' src={avatar} alt='user avatar' />
+						<div className='question-card-info'>
+							<h3 className='question-card-author'>{author}</h3>
+							{this.state.unanswered === true && <Link className='question-card-details' to={`/question/${this.props.id}`}>
+								<p className='question-details-text'>details</p>
+							</Link>}
+					</div>
 				</div>
 				<div className="block-container">
 					<div className='question-card-block container-element'>
