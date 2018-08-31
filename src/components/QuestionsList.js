@@ -12,9 +12,9 @@ class QuestionsList extends Component {
 				<Tabs>
 			    <TabList className='tab-list container-element'>
 			      <Tab className='tab hover container-element'>
-			      		 Unanswered Questions</Tab>
+			      		 Unanswered</Tab>
 			      <Tab className='tab hover container-element'>
-			      		 Answered Questions</Tab>
+			      		 Answered</Tab>
 			    </TabList>
 			    <TabPanel>
 		      	{ unanswered.map((q) => {

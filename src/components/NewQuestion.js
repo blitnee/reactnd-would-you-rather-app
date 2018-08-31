@@ -53,6 +53,9 @@ class NewQuestion extends Component {
 									placeholder='Option One'
 									/>
 							</label>
+	            <p className="question-form-or">
+	              <span>OR</span>
+	            </p>
 							<label htmlFor='option-two' className='question-input-label'>
 								<input
 									id='option-two'

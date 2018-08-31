@@ -152,7 +152,32 @@ a.nav-item {
 }
 .question-form {
   display: grid;
-  padding: 0 .5em;
+  padding: 0 .5em 1em;
+}
+.question-form-or {
+  line-height: 0.5;
+  text-align: center;
+}
+.question-form-or span {
+  display: inline-block;
+  position: relative;
+}
+.question-form-or span:before,
+.question-form-or span:after {
+  content: "";
+  position: absolute;
+  height: 5px;
+  border-bottom: 2px solid;
+  top: 0;
+  width: 100px;
+}
+.question-form-or span:before {
+  right: 100%;
+  margin-right: 15px;
+}
+.question-form-or span:after {
+  left: 100%;
+  margin-left: 15px;
 }
 .question-option-label {
   padding: .5em;
@@ -167,10 +192,11 @@ a.nav-item {
 }
 .question-input-label {
   display: inline-grid;
-  padding-bottom: 1em;
+  padding: .5em 0;
 }
 .question-input {
   border: 1px solid;
+  height: 20px;
 }
 .submit-question-button {
   width: 10em;
