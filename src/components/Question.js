@@ -31,17 +31,21 @@ class Question extends Component {
 		return votes.includes(this.props.authedUser)
 	}
 
+	getAvatar = (author) => {
+		return this.props.users[author].avatarURL
+	}
+
 	render () {
 		const { question, vote } = this.state
 		const data = [
 			{name: question.optionOne.text, value: question.optionOne.votes.length},
 			{name: question.optionTwo.text, value: question.optionTwo.votes.length}]
 		const COLORS = ['#0088FE', '#00C49F']
-		const RADIAN = Math.PI / 180;
+		const RADIAN = Math.PI / 180
 		const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
-		 	const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-		  const x  = cx + radius * Math.cos(-midAngle * RADIAN);
-		  const y = cy  + radius * Math.sin(-midAngle * RADIAN);
+		 	const radius = innerRadius + (outerRadius - innerRadius) * 0.5
+		  const x  = cx + radius * Math.cos(-midAngle * RADIAN)
+		  const y = cy  + radius * Math.sin(-midAngle * RADIAN)
 		  return (
 		    <text
 		    	x={x}
@@ -53,12 +57,16 @@ class Question extends Component {
 		    </text>
 		  )
 		}
+
 		return (
 			<div className='container-content container-element'>
 				<div className='question-card container-element'>
-					<h3 className='question-card-title container-element'>
-						<span>{question.author}</span>
-					</h3>
+					<div className='question-card-header container-element'>
+						<img className='question-card-avatar' src={this.getAvatar(question.author)} alt='user avatar' />
+						<h3 className='question-card-title'>
+							<span>{question.author}</span>
+						</h3>
+					</div>
 					<div className="block-container">
 						<div className='question-card-block container-element'>
 							<h4 className='question-title'>Would You Rather...</h4>
@@ -104,10 +112,11 @@ class Question extends Component {
 	}
 }
 
-function mapStateToProps({ questions, authedUser }) {
+function mapStateToProps({ questions, authedUser, users }) {
 	return {
 		questions,
-		authedUser: authedUser.loggedUserId
+		authedUser: authedUser.loggedUserId,
+		users
 	}
 }
 
