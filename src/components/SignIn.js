@@ -19,8 +19,7 @@ class SignIn extends Component {
 	}
 
 	render() {
-		const { authedUser, users, isAuthenticated } = this.props
-		const { redirectToReferrer } = this.state
+		const { users, isAuthenticated } = this.props
 		if (isAuthenticated === true) {
       return <Redirect to={'/'} />
     }
@@ -61,7 +60,6 @@ class SignIn extends Component {
 function mapStateToProps ({ users, authedUser }) {
   return {
     users: Object.values(users),
-    authedUser: authedUser.loggedUserId,
     isAuthenticated: authedUser.authenticated
   }
 }

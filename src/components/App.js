@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { BrowserRouter as  Router, Route, Switch, Redirect } from 'react-router-dom'
+import { BrowserRouter as  Router, Route, Switch } from 'react-router-dom'
 import LoadingBar from 'react-redux-loading-bar'
 import { handleInitialData } from '../actions/shared'
 import Nav from './Nav'
@@ -19,7 +19,7 @@ class App extends Component {
 	}
 
   render() {
-    const { isAuthenticated, loading } = this.props
+    const { isAuthenticated } = this.props
     return (
       <Router>
         <Fragment>
@@ -49,18 +49,16 @@ class App extends Component {
               <Route path='/signin' component={ SignIn } />
               <Route component={ NotFound } />
             </Switch>
-
         </Fragment>
       </Router>
     )
   }
 }
 
-function mapStateToProps ({ authedUser, loadingBar }) {
+function mapStateToProps ({ authedUser }) {
   return {
     isAuthenticated: authedUser.authenticated,
     authedUser: authedUser.loggedUserId,
-    loading: loadingBar
   }
 }
 

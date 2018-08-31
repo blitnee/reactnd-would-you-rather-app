@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleAnswerQuestion } from '../actions/questions'
-import { withRouter, Redirect, Route } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 
 class QuestionPrev extends Component {
 
@@ -101,7 +101,6 @@ class QuestionPrev extends Component {
 					</div>
 				</div>
 				<div className="button-container">
-				{/* @todo: OnSubmit send to '/question/id' ? */}
 				{this.state.showSubmit === true &&
 					<button
 						onClick={(e) => this.handleSubmit(e)}
