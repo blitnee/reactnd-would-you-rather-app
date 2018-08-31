@@ -23,7 +23,7 @@ class App extends Component {
     return (
       <Router>
         <Fragment>
-          {this.props.isAuthenticated && <Nav authedUser={this.props.authedUser} />}
+          <Nav />
           <LoadingBar />
             <Switch>
               <PrivateRoute

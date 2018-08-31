@@ -11,7 +11,7 @@ class Nav extends Component {
 	}
 
 	render () {
-		const { authedUser, avatar } = this.props
+		const { authedUser, isAuthenticated, avatar } = this.props
 		return (
 			<nav className='nav container-nav'>
 				<div className='nav-items'>
@@ -20,24 +20,26 @@ class Nav extends Component {
 						<Link to='/add' className='nav-item hover'>New</Link>
 						<Link to='/leaderboard' className='nav-item hover'>Leaders</Link>
 					</div>
-					<div className='nav-items-right'>
-						<Dropdown removeElement>
-              <DropdownTrigger>
-              	<div className='nav-user'>
-	                <img className='nav-avatar' src={avatar} alt='user avatar'/>
-	              	<div className='nav-item hover'>Hello, {authedUser}	&#9662;</div>
-	              </div>
-							</DropdownTrigger>
-              <DropdownContent>
-              	<ul className='drop-list'>
-									<li className='drop-item hover'
-											onClick={this.handleLogout()}>
-											Logout
-									</li>
-								</ul>
-              </DropdownContent>
-            </Dropdown>
-					</div>
+					{ isAuthenticated === true &&
+						<div className='nav-items-right'>
+							<Dropdown removeElement>
+	              <DropdownTrigger>
+	              	<div className='nav-user'>
+		                <img className='nav-avatar' src={avatar} alt='user avatar'/>
+		              	<div className='nav-item hover'>Hello, {authedUser}	&#9662;</div>
+		              </div>
+								</DropdownTrigger>
+	              <DropdownContent>
+	              	<ul className='drop-list'>
+										<li className='drop-item hover'
+												onClick={this.handleLogout()}>
+												Logout
+										</li>
+									</ul>
+	              </DropdownContent>
+	            </Dropdown>
+						</div>
+					}
 				</div>
 			</nav>
 		)
@@ -47,6 +49,7 @@ class Nav extends Component {
 function mapStateToProps ({ authedUser }) {
   return {
     authedUser: authedUser.loggedUserId,
+    isAuthenticated: authedUser.authenticated,
     avatar: authedUser.authedAvatar
   }
 }
