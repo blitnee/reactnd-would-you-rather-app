@@ -12,7 +12,7 @@ class Dashboard extends Component {
 	componentDidMount = () => {
 		const questions = this.props.questions
 		questions.sort(function(a, b) {
-			return a.timestamp - b.timestamp
+			return b.timestamp - a.timestamp
 		})
 
 		let answered = []
