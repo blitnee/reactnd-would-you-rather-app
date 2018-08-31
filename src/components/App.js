@@ -18,29 +18,38 @@ class App extends Component {
 		this.props.dispatch(handleInitialData())
 	}
 
-  displayNav() {
-    if(this.props.isAuthenticated) {
-      return <Nav authedUser={this.props.authedUser} />
-    }
-  }
-
   render() {
     const { isAuthenticated, loading } = this.props
     return (
       <Router>
         <Fragment>
-          {this.displayNav()}
+          {this.props.isAuthenticated && <Nav authedUser={this.props.authedUser} />}
           <LoadingBar />
-          {loading.default === 1 ? null : (
-          <Switch>
-            <PrivateRoute path='/' exact component={ Dashboard }/>
-            <PrivateRoute path='/leaderboard' exact component={ LeaderBoard } />
-            <PrivateRoute path='/question/:id' exact component={ Question } />
-            <PrivateRoute path='/add' exact component={ NewQuestion } />
-            <Route path='/signin' component={ SignIn } />
-            <Route component={ NotFound } />
-          </Switch>
-          )}
+            <Switch>
+              <PrivateRoute
+                path='/'
+                exact
+                component={ Dashboard }
+                isAuthenticated={isAuthenticated} />
+              <PrivateRoute
+                path='/leaderboard'
+                exact
+                component={ LeaderBoard }
+                isAuthenticated={isAuthenticated} />
+              <PrivateRoute
+                path='/question/:id'
+                exact
+                component={ Question }
+                isAuthenticated={isAuthenticated} />
+              <PrivateRoute
+                path='/add'
+                exact
+                component={ NewQuestion }
+                isAuthenticated={isAuthenticated} />
+              <Route path='/signin' component={ SignIn } />
+              <Route component={ NotFound } />
+            </Switch>
+
         </Fragment>
       </Router>
     )

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { handleAddQuestion } from '../actions/questions';
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+import { handleAddQuestion } from '../actions/questions'
 
 class NewQuestion extends Component {
 
@@ -20,7 +20,7 @@ class NewQuestion extends Component {
   }
 
   handleOptionTwoChange = (e) => {
-    const optionTwoText = e.target.value;
+    const optionTwoText = e.target.value
     this.setState(currentState => ({
       optionTwoText,
       disableSubmit: optionTwoText === '' || currentState.optionOneText === ''

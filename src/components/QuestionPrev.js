@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleAnswerQuestion } from '../actions/questions'
+import { withRouter, Redirect, Route } from 'react-router-dom'
 
 class QuestionPrev extends Component {
 
 	state = {
 		vote: '',
 		unanswered: false,
+		redirect: false,
 		showSubmit: false
 	}
 
@@ -34,12 +36,18 @@ class QuestionPrev extends Component {
 			answer: this.state.vote
 		}
     this.props.dispatch(handleAnswerQuestion(info))
+    this.setState({ redirect: true })
 	}
 
 	getButtonType = (value) => {
 		return value === 'Submit'
-			? <button disabled={this.state.vote === ''} onClick={(e) => this.handleSubmit(e)} className='pole-button hover container-element'>{value}</button>
-			: <Link to={`/question/${this.props.id}`}><button className='pole-button hover container-element'>{value}</button></Link>
+			? (<button disabled={this.state.vote === ''}
+								 onClick={(e) => this.handleSubmit(e)}
+								 className='pole-button hover container-element'>
+								 {value}</button>)
+			: (<Link to={`/question/${this.props.id}`}>
+					<button className='pole-button hover container-element'>
+					{value}</button></Link>)
 	}
 
 	getValue = (vote) => {
@@ -47,7 +55,11 @@ class QuestionPrev extends Component {
 	}
 
 	render() {
-		const { avatar, author, optionOne, optionTwo, buttonValue }  = this.props
+		const { id, avatar, author, optionOne, optionTwo, buttonValue }  = this.props
+		const { redirect } = this.state
+		if (redirect === true) {
+      return <Redirect to={`/question/${id}`} />
+    }
 		return (
 			<div className='question-card container-element'>
 				<div className='question-card-header container-element'>
@@ -108,4 +120,4 @@ function mapStateToProps ({ authedUser }) {
   }
 }
 
-export default connect(mapStateToProps)(QuestionPrev)
+export default withRouter(connect(mapStateToProps)(QuestionPrev))
