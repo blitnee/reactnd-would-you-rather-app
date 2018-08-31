@@ -10,6 +10,7 @@ import LeaderBoard from './LeaderBoard'
 import NewQuestion from './NewQuestion'
 import SignIn from './SignIn'
 import NotFound from './NotFound'
+import PrivateRoute from '../utils/PrivateRoute'
 
 class App extends Component {
 
@@ -25,13 +26,6 @@ class App extends Component {
 
   render() {
     const { isAuthenticated, loading } = this.props
-    const PrivateRoute = ({ component: Component, ...rest }) => (
-      <Route {...rest} render={(props) => (
-        isAuthenticated === true
-          ? <Component {...props} />
-          : <Redirect to='/signin' />
-      )}/>
-    )
     return (
       <Router>
         <Fragment>
