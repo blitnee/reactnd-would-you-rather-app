@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
 import { handleAddQuestion } from '../actions/questions'
+import { withRouter, Redirect } from 'react-router-dom'
 
 class NewQuestion extends Component {
 
   state = {
     optionOneText: '',
     optionTwoText: '',
-		disableSubmit: true
+		disableSubmit: true,
+		redirect: false,
   }
 
   handleOptionOneChange = (e) => {
@@ -33,10 +34,14 @@ class NewQuestion extends Component {
   	let optionTwoText = this.state.optionTwoText
   	let author = this.props.authedUser
     this.props.dispatch(handleAddQuestion({ optionOneText, optionTwoText, author }))
+    this.setState({ redirect: true })
   }
 
 	render() {
-		const { optionOneText, optionTwoText, disableSubmit } = this.state
+		const { optionOneText, optionTwoText, disableSubmit, redirect } = this.state
+		if (redirect === true) {
+      return <Redirect to={'/'} />
+    }
 		return (
 			<div className='container-content'>
 				<div className='new-question-card container-element'>
@@ -88,4 +93,4 @@ function mapStateToProps ({ authedUser, questions }) {
 	}
 }
 
-export default connect(mapStateToProps)(NewQuestion)
+export default withRouter(connect(mapStateToProps)(NewQuestion))
