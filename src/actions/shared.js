@@ -12,11 +12,10 @@ export function handleInitialData () {
 				dispatch(receiveUsers(users))
 				dispatch(receiveQuestions(questions))
 				dispatch(hideLoading())
-			})
-      .then(() => {
+			}).then(() => {
         const loggedUser = localStorage.getItem('user')
         if (loggedUser) {
-           dispatch(authSuccess(JSON.parse(loggedUser)))
+          dispatch(authSuccess(JSON.parse(loggedUser)))
         }
       })
 	}
