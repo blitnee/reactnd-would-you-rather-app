@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleAnswerQuestion } from '../actions/questions'
-import { withRouter, Redirect } from 'react-router-dom'
 
 class QuestionPrev extends Component {
 
 	state = {
 		vote: '',
 		unanswered: false,
-		redirect: false,
 		showSubmit: false
 	}
 
@@ -36,7 +34,7 @@ class QuestionPrev extends Component {
 			answer: this.state.vote
 		}
     this.props.dispatch(handleAnswerQuestion(info))
-    this.setState({ redirect: true })
+    this.props.history.push(`/question/${this.props.id}`)
 	}
 
 	getButtonType = (value) => {
@@ -55,11 +53,7 @@ class QuestionPrev extends Component {
 	}
 
 	render() {
-		const { id, avatar, author, optionOne, optionTwo, buttonValue }  = this.props
-		const { redirect } = this.state
-		if (redirect === true) {
-      return <Redirect to={`/question/${id}`} />
-    }
+		const { avatar, author, optionOne, optionTwo, buttonValue }  = this.props
 		return (
 			<div className='question-card container-element'>
 				<div className='question-card-header container-element'>

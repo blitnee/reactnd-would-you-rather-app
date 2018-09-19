@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { login } from '../actions/authedUser'
-import { withRouter, Redirect } from 'react-router-dom'
 
 class SignIn extends Component {
 
@@ -19,10 +18,7 @@ class SignIn extends Component {
 	}
 
 	render() {
-		const { users, isAuthenticated } = this.props
-		if (isAuthenticated === true) {
-      return <Redirect to={'/'} />
-    }
+		const { users } = this.props
 		return (
 			<div className='signin-container container-content container-element'>
 				<div>
@@ -46,10 +42,11 @@ class SignIn extends Component {
 						</select>
 					</div>
 					<div className='button-container'>
-						<button className='signin-button container-element hover'
-										disabled={ this.state.userId === '' }
-										onClick={this.handleSubmit}>
-										Sign In</button>
+						<button
+							className='signin-button container-element hover'
+							disabled={ this.state.userId === '' }
+							onClick={this.handleSubmit}>
+							Sign In</button>
 					</div>
 				</div>
 			</div>
@@ -57,11 +54,10 @@ class SignIn extends Component {
 	}
 }
 
-function mapStateToProps ({ users, authedUser }) {
+function mapStateToProps ({ users }) {
   return {
-    users: Object.values(users),
-    isAuthenticated: authedUser.authenticated
+    users: Object.values(users)
   }
 }
 
-export default withRouter(connect(mapStateToProps)(SignIn))
+export default connect(mapStateToProps)(SignIn)

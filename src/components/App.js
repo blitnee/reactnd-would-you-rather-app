@@ -10,7 +10,6 @@ import LeaderBoard from './LeaderBoard'
 import NewQuestion from './NewQuestion'
 import SignIn from './SignIn'
 import NotFound from './NotFound'
-import PrivateRoute from '../utils/PrivateRoute'
 
 class App extends Component {
 
@@ -19,46 +18,46 @@ class App extends Component {
 	}
 
   render() {
-    const { isAuthenticated } = this.props
+    const { isAuthenticated, loading } = this.props
     return (
       <Router>
         <Fragment>
           <Nav />
           <LoadingBar />
-            <Switch>
-              <PrivateRoute
-                path='/'
-                exact
-                component={ Dashboard }
-                isAuthenticated={isAuthenticated} />
-              <PrivateRoute
-                path='/leaderboard'
-                exact
-                component={ LeaderBoard }
-                isAuthenticated={isAuthenticated} />
-              <PrivateRoute
-                path='/question/:id'
-                exact
-                component={ Question }
-                isAuthenticated={isAuthenticated} />
-              <PrivateRoute
-                path='/add'
-                exact
-                component={ NewQuestion }
-                isAuthenticated={isAuthenticated} />
-              <Route path='/signin' component={ SignIn } />
-              <Route component={ NotFound } />
-            </Switch>
+            {loading.default === 1
+              ? null
+              : (isAuthenticated
+                ? (<Switch>
+                    <Route
+                      path='/'
+                      exact
+                      component={ Dashboard } />
+                    <Route
+                      path='/leaderboard'
+                      exact
+                      component={ LeaderBoard } />
+                    <Route
+                      path='/question/:id'
+                      exact
+                      component={ Question } />
+                    <Route
+                      path='/add'
+                      exact
+                      component={ NewQuestion } />
+                    <Route component={ NotFound } />
+                  </Switch>)
+                : <Route component={ SignIn } />
+              )}
         </Fragment>
       </Router>
     )
   }
 }
 
-function mapStateToProps ({ authedUser }) {
+function mapStateToProps ({ authedUser, loadingBar }) {
   return {
     isAuthenticated: authedUser.authenticated,
-    authedUser: authedUser.loggedUserId,
+    loading: loadingBar
   }
 }
 
