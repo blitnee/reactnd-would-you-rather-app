@@ -60,15 +60,14 @@ class Question extends Component {
 
 		return (
 			<div className='container-content container-element'>
-				<div className='question-card container-element'>
-					<div className='question-card-header container-element'>
+					<div className='question-card-header'>
 						<img className='question-card-avatar' src={this.getAvatar(question.author)} alt='user avatar' />
-						<h3 className='question-card-title'>
+						<h3 className='question-card-author'>
 							<span>{question.author}</span>
 						</h3>
 					</div>
 					<div className="block-container">
-						<div className='question-card-block container-element'>
+						<div className='question-card-block'>
 							<h4 className='question-title'>Would You Rather...</h4>
 							<div className='question-select'>
 								<div className='option-one'>
@@ -87,7 +86,7 @@ class Question extends Component {
 							</div>
 						</div>
 					</div>
-					<div className='results-block container-element'>
+					<div className='results-block'>
 						<h3 className='pole-results-title'>Results</h3>
 						<hr/>
 						<p className='vote-count'>Based on {this.getVotes()} voters</p>
@@ -106,7 +105,6 @@ class Question extends Component {
 			        <Tooltip cursor={false} />
 			      </PieChart>
 			     </div>
-				</div>
 			</div>
 		)
 	}

@@ -22,9 +22,9 @@ class SignIn extends Component {
 		return (
 			<div className='signin-container container-content container-element'>
 				<div>
-					<header className='signin-header container-element'>
-						<p className='title container-element'>Would You Rather</p>
-						<p className='subtitle container-element'>Please sign in to continue</p>
+					<header className='signin-header'>
+						<p className='title'>Would You Rather</p>
+						<p className='subtitle'>Please sign in to continue</p>
 					</header>
 					<div className='signin-image-container'>
 					</div>

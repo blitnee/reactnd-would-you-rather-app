@@ -56,7 +56,7 @@ class QuestionPrev extends Component {
 		const { avatar, author, optionOne, optionTwo, buttonValue }  = this.props
 		return (
 			<div className='question-card container-element'>
-				<div className='question-card-header container-element'>
+				<div className='question-card-header'>
 						<img className='question-card-avatar' src={avatar} alt='user avatar' />
 						<div className='question-card-info'>
 							<h3 className='question-card-author'>{author}</h3>
@@ -66,7 +66,7 @@ class QuestionPrev extends Component {
 					</div>
 				</div>
 				<div className="block-container">
-					<div className='question-card-block container-element'>
+					<div className='question-card-block'>
 						<h4 className='question-title'>Would You Rather...</h4>
 						<form className='question-select' action=''>
 							<label htmlFor='option-one' className='question-option-label'>

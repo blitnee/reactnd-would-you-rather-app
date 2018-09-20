@@ -39,43 +39,41 @@ class NewQuestion extends Component {
 	render() {
 		const { optionOneText, optionTwoText, disableSubmit } = this.state
 		return (
-			<div className='container-content'>
-				<div className='new-question-card container-element'>
-					<div className='question-card-block container-element'>
-						<h4 className='question-title'>Would You Rather...</h4>
-						<form className='question-form'>
-							<label htmlFor='option-one' className='question-input-label'>
-								<input
-									id='option-one'
-									className='question-input'
-									type='text'
-									value={optionOneText}
-									onChange={this.handleOptionOneChange}
-									placeholder='Option One'
-									/>
-							</label>
-	            <p className="question-form-or">
-	              <span>OR</span>
-	            </p>
-							<label htmlFor='option-two' className='question-input-label'>
-								<input
-									id='option-two'
-									className='question-input'
-									type='text'
-									value={optionTwoText}
-									onChange={this.handleOptionTwoChange}
-									placeholder='Option One'
-									/>
-							</label>
-						</form>
-					</div>
-					<div className="button-container">
-						<button
-						  disabled={disableSubmit}
-              type="submit"
-              onClick={this.handleAddQuestion}
-              className='submit-question-button hover container-element'>Submit</button>
-					</div>
+			<div className='new-question-card'>
+				<div className='question-card-block'>
+					<h3 className='question-title'>Would You Rather...</h3>
+					<form className='question-form'>
+						<label htmlFor='option-one' className='question-input-label'>
+							<input
+								id='option-one'
+								className='question-input'
+								type='text'
+								value={optionOneText}
+								onChange={this.handleOptionOneChange}
+								placeholder='Option One'
+								/>
+						</label>
+            <p className="question-form-or">
+              <span>OR</span>
+            </p>
+						<label htmlFor='option-two' className='question-input-label'>
+							<input
+								id='option-two'
+								className='question-input'
+								type='text'
+								value={optionTwoText}
+								onChange={this.handleOptionTwoChange}
+								placeholder='Option Two'
+								/>
+						</label>
+					</form>
+				</div>
+				<div className="button-container">
+					<button
+					  disabled={disableSubmit}
+            type="submit"
+            onClick={this.handleAddQuestion}
+            className='submit-question-button hover'>Submit</button>
 				</div>
 			</div>
 		)

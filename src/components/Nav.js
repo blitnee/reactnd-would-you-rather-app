@@ -16,9 +16,9 @@ class Nav extends Component {
 			<nav className='nav container-nav'>
 				<div className='nav-items'>
 					<div className='nav-items-left'>
-						<Link to='/' className='nav-item hover'>Home</Link>
-						<Link to='/add' className='nav-item hover'>New</Link>
-						<Link to='/leaderboard' className='nav-item hover'>Leaders</Link>
+						<Link to='/' className='nav-item'>Home</Link>
+						<Link to='/add' className='nav-item'>New</Link>
+						<Link to='/leaderboard' className='nav-item'>Leaders</Link>
 					</div>
 					{ isAuthenticated === true &&
 						<div className='nav-items-right'>
@@ -26,12 +26,12 @@ class Nav extends Component {
 	              <DropdownTrigger>
 	              	<div className='nav-user'>
 		                <img className='nav-avatar' src={avatar} alt='user avatar'/>
-		              	<div className='nav-item hover'>Hello, {authedUser}	&#9662;</div>
+		              	<div className='nav-item'>Hello, {authedUser}	&#9662;</div>
 		              </div>
 								</DropdownTrigger>
 	              <DropdownContent>
 	              	<ul className='drop-list'>
-										<li className='drop-item hover'
+										<li className='drop-item'
 												onClick={this.handleLogout()}>
 												Logout
 										</li>

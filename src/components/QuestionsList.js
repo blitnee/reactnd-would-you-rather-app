@@ -8,12 +8,12 @@ class QuestionsList extends Component {
 	render() {
 		const { unanswered, answered, users } = this.props
 		return (
-			<div className='container-content container-element'>
+			<div className='container-content'>
 				<Tabs>
-			    <TabList className='tab-list container-element'>
-			      <Tab className='tab hover container-element'>
+			    <TabList className='tab-list'>
+			      <Tab className='tab'>
 			      		 Unanswered</Tab>
-			      <Tab className='tab hover container-element'>
+			      <Tab className='tab'>
 			      		 Answered</Tab>
 			    </TabList>
 			    <TabPanel>
