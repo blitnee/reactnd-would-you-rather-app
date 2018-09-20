@@ -13,6 +13,8 @@ This application allows a user to login/out, vote on existing poll questions, cr
 * `QuestionList` - Displays the tab feature that toggles the answered and unanswered question lists
 * `SignIn` - Displays the signin form
 
+![Home display in Would You Rather app](https://github.com/blitnee/would-you-rather-app/blob/master/img/home.png)
+
 ## Instructions
 
 1. Download a copy of the project locally or clone the repository:
